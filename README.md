@@ -1,3 +1,3 @@
 # Heroes of life
 
-### Game developed for hetic project
+Game developed for hetic project
