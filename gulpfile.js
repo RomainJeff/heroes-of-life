@@ -3,7 +3,8 @@ var dev         = "app_dev",
 
 var gulp        = require('gulp'),
     compass     = require('gulp-for-compass'),
-    useref      = require('gulp-useref');
+    useref      = require('gulp-useref'),
+    clean       = require('gulp-clean');
 
 
 // Compile SASS
@@ -29,8 +30,22 @@ gulp.task('compile', function () {
 });
 
 
+// Move files to prod without changing them
+gulp.task('move', ['clean'], function () {
+  return gulp.src(dev +"/libraries/views/**/*")
+    .pipe(gulp.dest(prod +'/libraries/views'));
+});
+
+
+// Clean directories
+gulp.task('clean', function () {
+  return gulp.src(prod +"/libraries/views")
+    .pipe(clean());
+});
+
+
 // Production task
-gulp.task('prod', ['compass', 'compile'], function () {});
+gulp.task('prod', ['compass', 'compile', 'move'], function () {});
 
 
 // Watch task
