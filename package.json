@@ -1,0 +1,17 @@
+{
+  "name": "life-of-heroes",
+  "version": "1.0.0",
+  "description": "Game developed for hetic project",
+  "main": ".",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.8.11",
+    "gulp-for-compass": "0.0.2",
+    "gulp-useref": "^1.1.1"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Romain QUILLIOT",
+  "license": "MIT"
+}

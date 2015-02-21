@@ -1,3 +1,4 @@
 node_modules/
 app_prod/
 .DS_STORE
+.sass-cache/
