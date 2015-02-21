@@ -4,15 +4,36 @@
     <meta charset="UTF-8">
     <title>Heroes of life</title>
 </head>
-<body>
-    <h1>:)</h1>
+<body id="index">
+    <!-- HOMEPAGE -->
+    <section id="homepage">
+        <div class="smoke"></div>
+        <div id="logo"></div>
+        <button id="start-experience">start the game</button>
+    </section>
+    <!-- END HOMEPAGE -->
+
+
+    <!-- GAME -->
+    <section id="game-interface">
+        <section id="loading-content"></section>
+        <section id="game-content" class="pane" data-active="true"></section>
+    </section>
+    <!-- END GAME -->
+
 
     <!-- build:js scripts/vendors.js -->
     <script type="text/javascript" src="libraries/vendors/jquery.js"></script>
+    <script type="text/javascript" src="libraries/vendors/handlebars.js"></script>
     <!-- endbuild -->
+
     <!-- build:js scripts/app.js -->
-    <script type="text/javascript" src="libraries/controllers/test.js"></script>
-    <script type="text/javascript" src="libraries/models/test.js"></script>
+    <script type="text/javascript" src="libraries/controllers/routingController.js"></script>
+    <script type="text/javascript" src="libraries/controllers/pageController.js"></script>
+
+    <script type="text/javascript" src="libraries/controllers/indexController.js"></script>
+    <script type="text/javascript" src="libraries/controllers/gamePagesController.js"></script>
+    <script type="text/javascript" src="libraries/app.js"></script>
     <!-- endbuild -->
 </body>
 </html>
