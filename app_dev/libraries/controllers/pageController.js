@@ -7,11 +7,33 @@ var pageController = {};
  * @param function callback Le callback
  */
 pageController.load = function (page, callback) {
+    var that = this;
+
     $.get('libraries/views/'+ page +'.hbs', function (content) {
         callback(
-            Handlebars.compile(content)
+            Handlebars.compile(content)(that.params)
         );
     });
+};
+
+
+/**
+ * Ajout des parametres a passer a la vue
+ * @param object params Les parametres
+ * @return object
+ */
+pageController.params = function (params) {
+    this.params = params;
+
+    return this;
+};
+
+
+/**
+ * Nettoie les parametres
+ */
+pageController.cleanParams = function () {
+    this.params = [];
 };
 
 
@@ -23,9 +45,12 @@ pageController.load = function (page, callback) {
 pageController.display = function (page, container) {
     if (!container) var container = 'game-content';
 
+    var that = this;
+
     this.load(page, function (content) {
         $('#'+ container).html(content);
         routingController.call(page);
+        that.cleanParams();
     });
 };
 

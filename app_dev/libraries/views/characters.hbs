@@ -4,32 +4,13 @@
 </div>
 
 <ul>
-    <li id="green-lanter" data-char="green">
+    {{#each heroes}}
+    <li id="{{id}}" data-char="{{char}}">
         <div class="cont">
             <div class="icon">
-                <h3>Green lantern</h3>
+                <h3>{{name}}</h3>
             </div>
         </div>
     </li>
-    <li id="batman" data-char="batman">
-        <div class="cont">
-            <div class="icon">
-                <h3>Batman</h3>
-            </div>
-        </div>
-    </li>
-    <li id="flash" data-char="flash">
-        <div class="cont">
-            <div class="icon">
-                <h3>Flash</h3>
-            </div>
-        </div>
-    </li>
-    <li id="superman" data-char="superman">
-        <div class="cont">
-            <div class="icon">
-                <h3>Superman</h3>
-            </div>
-        </div>
-    </li>
+    {{/each}}
 </ul>
