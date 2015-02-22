@@ -4,7 +4,7 @@ $(function() {
     indexController.home();
     
     // ROUTES
-    routingController.addRoute('home', gamePagesController.home);
-    routingController.addRoute('characters', gamePagesController.characters);
+    routingController.addRoute('home', gameHomePageController.launch);
+    routingController.addRoute('characters', gameCharactersPageController.launch);
 
 });
