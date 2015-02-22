@@ -22,7 +22,7 @@ pageController.load = function (page, callback) {
  * @param object params Les parametres
  * @return object
  */
-pageController.params = function (params) {
+pageController.setParams = function (params) {
     this.params = params;
 
     return this;
