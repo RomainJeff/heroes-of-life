@@ -1,4 +1,570 @@
-@import "compass";
-@import "compass/reset";
+body {
+    margin: 0;
+    padding: 0;
+    background: #000;
+}
 
-// Test
+
+/***************/
+/** HOMEPAGE ***/
+/***************/
+[id=homepage] {
+    background: url('../resources/images/background.jpg');
+    background-size: cover;
+    height: 100vh;
+    width: 100%;
+}
+
+[id=logo] {
+    position: absolute;
+    left: calc(50% - 72.5px);
+    top: 22vh;
+    background: url('../resources/images/logo.png');
+    width: 145px;
+    height: 150px;
+    background-size: 145px 150px;
+}
+
+[id=start-experience] {
+    position: absolute;
+    bottom: 8vh;
+    left: calc(50% - 100px);
+    width: 200px;
+
+    text-align: center;
+    text-transform: uppercase;
+    font-family: Raleway;
+    font-weight: 200;
+    font-size: 20px;
+
+    cursor: pointer;
+    background: transparent;
+    border: none;
+    color: #838383;
+    outline: none;
+    transition-duration: 200ms;
+}
+
+[id=start-experience]:hover {
+    color: #ababab;
+}
+
+.smoke {
+    position: fixed;
+    bottom: -90vh;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 100vh;
+    background: url('../resources/images/smoke.png');
+    background-size: 100% 100vh;
+
+    -webkit-animation: smoke 30s linear infinite;
+}
+
+
+@-webkit-keyframes smoke {
+    from, to {}
+
+    0%{
+        transform: translateY(0px);
+        opacity: 0;
+    }
+
+    10%, 50% {
+        opacity: 1;
+        transform: translateY(-30vh);
+    }
+
+    50%, 70% {
+        transform: translateY(-50vh);
+    }
+
+    70%, 90% {
+        opacity: 0;
+    }
+
+    100% {
+        transform: translateY(0px);
+        opacity: 0;
+    }
+}
+
+
+/********************/
+/** GAME INTERFACE **/
+/********************/
+[id=game-interface] {
+    height: 100vh;
+    width: 100%;
+    position: fixed;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    background: #000;
+    display: none;
+}
+
+.pane {
+    width: 100%;
+    height: 100vh;
+    display: none;
+    position: fixed;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+}
+
+.pane[data-active="true"] {
+    display: block;
+}
+
+[id=game-interface].active {
+    display: block;
+}
+
+[id=game-interface] nav {
+    height: 230px;
+    width: 30%;
+    position: fixed;
+    top: calc(50vh - 115px);
+    left: 10%;
+}
+
+[id=game-interface] nav ul {
+    padding: 0;
+    margin: 0;
+}
+
+[id=game-interface] nav ul li {
+    padding-left: 80px;
+    padding-top: 10px;
+    height: 25px;
+    margin-bottom: 50px;
+    list-style: none;
+    position: relative;
+    font-size: 25px;
+    cursor: pointer;
+    color: #4f4f4f;
+    font-family: "Raleway (OT1)";
+    font-weight: 100;
+    text-transform: uppercase;
+    transition-duration: 300ms;
+}
+
+[id=game-interface] nav ul li:hover,
+[id=game-interface] nav ul li.active {
+    color: #e6e5e5;
+}
+
+[id=game-interface] nav ul li:before {
+    content: "";
+    width: 20px;
+    height: 70px;
+    background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="7px" height="80px" viewBox="0 0 33.496 102" enable-background="new 0 0 33.496 102" xml:space="preserve"><polygon points="15.498,1.75 1.25,98.613 17.5,98.613 32.246,1.75 " fill="#383838"/></svg>');
+    background-size: 20px 70px;
+    fill: #383838;
+    position: absolute;
+    left: 0;
+    top: -40%;
+}
+
+[id=game-interface] nav ul li:hover:before,
+[id=game-interface] nav ul li.active:before {
+    background: url('data:image/svg+xml;utf8,<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" width="7px" height="80px" viewBox="0 0 33.496 102" enable-background="new 0 0 33.496 102" xml:space="preserve"><polygon points="15.498,1.75 1.25,98.613 17.5,98.613 32.246,1.75 " fill="#9b9b9b"/></svg>');
+    background-size: 20px 70px;
+}
+
+[id=game-interface] nav ul li:nth-child(2):before {
+    left: -12px;
+}
+
+[id=game-interface] nav ul li:nth-child(3):before {
+    left: -24px;
+}
+
+[id=batman-shadow] {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    background: url('../resources/images/batman.png');
+    width: calc(841px / 1.5);
+    height: calc(1240px / 1.5);
+    background-size: calc(841px / 1.5) calc(1240px / 1.5);
+}
+
+[id=game-interface] .loading {
+    position: fixed;
+    z-index: 3;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    background: rgba(0,0,0,0.7);
+    width: 100%;
+    height: 100vh;
+    display: none;
+}
+
+[id=game-interface] .loading.active {
+    display: block;
+}
+
+[id=game-interface] .loading .flash {
+  width: 200px;
+  height: 300px;
+  position: absolute;
+  top: calc(50% - 170px);
+  left: calc(50% - 100px);
+  background: url('../resources/images/flash.svg');
+}
+
+[id=game-interface] .loading .flash:after {
+    content: "Loading...";
+    position: absolute;
+    bottom: 20px;
+    left: calc(50% - 32px);
+    color: rgba(255,255,255,0.7);
+    font-family: "Raleway";
+    font-weight: 800;
+    font-size: 13px;
+    text-transform: uppercase;
+}
+
+[id=game-interface] .loading .flash[data-step="1"] {
+  background-position: -190px 0;
+}
+
+[id=game-interface] .loading .flash[data-step="2"] {
+  background-position: -350px 0;
+}
+
+[id=game-interface] .loading .flash[data-step="3"] {
+  background-position: -590px 0;
+}
+
+
+[id=select-character] ul {
+    width: 100%;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    background: #161618;
+}
+
+.title {
+    width: 550px;
+    position: fixed;
+    z-index: 3;
+    top: 60px;
+    left: calc(50% - 275px);
+}
+
+.title span {
+    font-family: "Raleway (OT1)";
+    font-size: 13px;
+    text-transform: uppercase;
+    color: #a0a0a0;
+}
+
+.title h2 {
+    font-family: "Raleway (OT1)";
+    font-size: 30px;
+    font-weight: normal;
+    text-transform: uppercase;
+    text-align: left;
+    color: #e6e6e6;
+    margin-left: 20px;
+}
+
+[id=select-character] ul li {
+    transition-duration: 200ms;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    width: calc(100% / 4);
+    height: 100vh;
+    position: absolute;
+    list-style: none;
+    border-right: solid 2px #161618;
+    border-left: solid 2px #161618;
+
+    background: #1b1b1d;
+    cursor: pointer;
+    color: white;
+    transform: skew(-20deg);
+}
+
+[id=select-character] ul li .cont {
+    transform: skew(20deg);
+}
+
+[id=select-character] ul li:hover {
+    background: transparent;
+}
+
+[id=select-character] ul li:nth-child(2) {
+    left: 25%;
+}
+
+[id=select-character] ul li:nth-child(3) {
+    left: 50%;
+}
+
+[id=select-character] ul li:last-child {
+    border-right: none;
+    left: calc(75%);
+    width: 100%;
+}
+
+[id=select-character] ul li:first-child {
+    border-left: none;
+    left: -75%;
+    width: 100%;
+}
+
+[id=select-character] ul li .icon {
+    width: calc(380px / 2);
+    height: calc(318px / 2);
+    position: absolute;
+    top: calc(60vh - 159px);
+}
+
+[id=select-character] ul li .icon h3 {
+    font-family: "Raleway (OT1)";
+    text-transform: uppercase;
+    font-weight: 100;
+    position: absolute;
+    bottom: -80px;
+    width: 100%;
+    text-align: center;
+    color: #6d6262;
+    transition-duration: 200ms;
+}
+
+[id=select-character] ul li:hover .icon h3 {
+    color: white;
+}
+
+[id=select-character] ul #green-lanter .icon {
+    background: url('../resources/images/chars/select_green.png');
+    background-size: calc(380px / 2) calc(318px / 2);
+    left: 68.25%;
+}
+
+[id=select-character] ul #batman .icon,
+[id=select-character] ul #flash .icon {
+    left: calc(25% - 190px);
+}
+
+[id=select-character] ul #batman .icon {
+    background: url('../resources/images/chars/select_batman.png');
+    background-size: calc(380px / 2) calc(318px / 2);
+}
+
+[id=select-character] ul #superman .icon {
+    background: url('../resources/images/chars/select_superman.png');
+    background-size: calc(380px / 2) calc(318px / 2);
+    right: calc(75% + 200px);
+}
+
+[id=select-character] ul #flash .icon {
+    background: url('../resources/images/chars/select_flash.png');
+    background-size: calc(380px / 2) calc(318px / 2);
+}
+
+
+
+/** RULES**/
+.rules {
+    position: absolute;
+    display: none;
+    right: 12%;
+    height: 20vh;
+    width: 500px;
+    top: 32vh;
+    color: white;
+    font-family: "Raleway (OT1)";
+}
+
+.rules.active {
+    display: block;
+}
+
+.rules h2 {
+    font-weight: 300;
+    text-transform: uppercase;
+    text-align: right;
+    margin-bottom: 50px;
+}
+
+.rules h2 span {
+    margin-top: 15px;
+    display: block;
+    color: gray;
+    font-size: 11px;
+}
+
+.rules p {
+    font-size: 13px;
+    text-align: justify;
+}
+
+
+
+/** IN GAME **/
+.container {
+    width: 960px;
+    height: 100vh;
+    margin: auto;
+    position: absolute;
+    left: calc(50% - 480px);
+    top: 0;
+}
+
+[id=grille] {
+    width: 600px;
+    height: 240px;
+    position: absolute;
+    left: 0;
+    top: calc(50% - 100px);
+}
+
+.aside {
+    width: 300px;
+    height: 300px;
+    position: absolute;
+    right: 0;
+    top: calc(50% - 140px);
+}
+
+[id=grille] .line {
+    width: 100%;
+    display: flex;
+}
+
+[id=grille] .line .row {
+    flex: 1;
+    width: 30px;
+    height: 30px;
+    border-bottom: solid 1px #4e4e4e;
+    border-right: solid 1px #4e4e4e;
+    transition-duration: 200ms;
+}
+
+[id=grille] .line .row:hover,
+[id=grille] .line .row[data-active=true] {
+    background: rgba(255,255,255,0.2);
+}
+
+[id=grille] .line .row:nth-child(15):hover,
+[id=grille] .line .row:nth-child(15)[data-active=true],
+[id=grille] .line .row:nth-child(1):hover,
+[id=grille] .line .row:nth-child(1)[data-active=true],
+[id=grille] .line:first-child .row:hover,
+[id=grille] .line:first-child .row[data-active=true],
+[id=grille] .line:last-child .row:hover,
+[id=grille] .line:last-child .row[data-active=true] {
+    background: transparent !important;
+}
+
+[id=grille] .line .row:nth-child(15) {
+    border-right: none;
+}
+
+[id=grille] .line:last-child .row {
+    border-bottom: none;
+}
+
+[id=grille] .line .row[data-character="flash"][data-active=true] {
+    background: url('../resources/images/game_chars/flash.png') no-repeat center;
+}
+
+[id=grille] .line .row[data-character="superman"][data-active=true] {
+    background: url('../resources/images/game_chars/superman.png') no-repeat center;
+}
+
+[id=grille] .line .row[data-character="green"][data-active=true] {
+    background: url('../resources/images/game_chars/green.png') no-repeat center;
+}
+
+[id=grille] .line .row[data-character="batman"][data-active=true] {
+    background: url('../resources/images/game_chars/batman.png') no-repeat center;
+}
+
+
+.aside {
+    color: white;
+    font-weight: 100;
+    font-family: "Raleway";
+}
+
+.aside h2 {
+    text-transform: uppercase;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.aside p {
+    font-size: 13px;
+    font-weight: 100;
+    text-align: justify;
+}
+
+.aside p:last-child {
+    text-align: center;
+}
+
+.game-button {
+    margin-top: 20px;
+    
+    cursor: pointer;
+    outline: none;
+    background: transparent;
+    font-size: 16px;
+    font-family: "Raleway";
+    font-weight: 100;
+    text-transform: uppercase;
+    color: rgba(255,255,255,0.6);
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border: solid 2px rgba(255,255,255,0.3);
+    transition-duration: 200ms;
+}
+
+.game-button:hover {
+    background: #FFF;
+    color: #000;
+}
+
+.game-button.blocked {
+    opacity: 0.4;
+}
+
+.game-button.blocked:hover {
+    background: none;
+    color: rgba(255,255,255,0.6);
+}
+
+.button-container {
+    text-align: center;
+}
+
+[id=end-game] {
+    display: none;
+}
+
+[id=resources-counter] {
+    font-size: 30px;
+    font-family: "Raleway";
+    font-weight: 100;
+    text-align: center;
+}
+
+[id=resources-counter] i {
+    font-style: normal;
+}
+
+[id=resources-counter] span {
+    display: block;
+    font-size: 13px;
+    color: rgba(255, 255, 255, 0.5);
+}
