@@ -422,7 +422,7 @@ body {
     top: 0;
 }
 
-[id=grille] {
+.grille {
     width: 600px;
     height: 240px;
     position: absolute;
@@ -438,12 +438,12 @@ body {
     top: calc(50% - 140px);
 }
 
-[id=grille] .line {
+.grille .line {
     width: 100%;
     display: flex;
 }
 
-[id=grille] .line .row {
+.grille .line .row {
     flex: 1;
     width: 30px;
     height: 30px;
@@ -452,43 +452,43 @@ body {
     transition-duration: 200ms;
 }
 
-[id=grille] .line .row:hover,
-[id=grille] .line .row[data-active=true] {
+.grille .line .row:hover,
+.grille .line .row[data-active=true] {
     background: rgba(255,255,255,0.2);
 }
 
-[id=grille] .line .row:nth-child(15):hover,
-[id=grille] .line .row:nth-child(15)[data-active=true],
-[id=grille] .line .row:nth-child(1):hover,
-[id=grille] .line .row:nth-child(1)[data-active=true],
-[id=grille] .line:first-child .row:hover,
-[id=grille] .line:first-child .row[data-active=true],
-[id=grille] .line:last-child .row:hover,
-[id=grille] .line:last-child .row[data-active=true] {
+.grille .line .row:nth-child(15):hover,
+.grille .line .row:nth-child(15)[data-active=true],
+.grille .line .row:nth-child(1):hover,
+.grille .line .row:nth-child(1)[data-active=true],
+.grille .line:first-child .row:hover,
+.grille .line:first-child .row[data-active=true],
+.grille .line:last-child .row:hover,
+.grille .line:last-child .row[data-active=true] {
     background: transparent !important;
 }
 
-[id=grille] .line .row:nth-child(15) {
+.grille .line .row:nth-child(15) {
     border-right: none;
 }
 
-[id=grille] .line:last-child .row {
+.grille .line:last-child .row {
     border-bottom: none;
 }
 
-[id=grille] .line .row[data-character="flash"][data-active=true] {
+.grille .line .row[data-character="flash"][data-active=true] {
     background: url('../resources/images/game_chars/flash.png') no-repeat center;
 }
 
-[id=grille] .line .row[data-character="superman"][data-active=true] {
+.grille .line .row[data-character="superman"][data-active=true] {
     background: url('../resources/images/game_chars/superman.png') no-repeat center;
 }
 
-[id=grille] .line .row[data-character="green"][data-active=true] {
+.grille .line .row[data-character="green"][data-active=true] {
     background: url('../resources/images/game_chars/green.png') no-repeat center;
 }
 
-[id=grille] .line .row[data-character="batman"][data-active=true] {
+.grille .line .row[data-character="batman"][data-active=true] {
     background: url('../resources/images/game_chars/batman.png') no-repeat center;
 }
 
