@@ -64,19 +64,3 @@ pageController.reset = function (container) {
 
     $('#'+ container).html("");
 };
-
-
-/**
- * Affiche le loader
- */
-pageController.displayLoading = function () {
-    this.display('loading', 'loading-content');
-};
-
-
-/**
- * Cache le loader
- */
-pageController.hideLoading = function () {
-    this.reset('loading-content');
-};

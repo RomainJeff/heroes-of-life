@@ -191,7 +191,10 @@ body {
     background-size: calc(841px / 1.5) calc(1240px / 1.5);
 }
 
-[id=game-interface] .loading {
+
+
+/** LOADING **/
+[id=loading-content] {
     position: fixed;
     z-index: 3;
     top: 0; bottom: 0;
@@ -202,11 +205,11 @@ body {
     display: none;
 }
 
-[id=game-interface] .loading.active {
+[id=loading-content].active {
     display: block;
 }
 
-[id=game-interface] .loading .flash {
+[id=loading-content] .flash {
   width: 200px;
   height: 300px;
   position: absolute;
@@ -215,7 +218,7 @@ body {
   background: url('../resources/images/flash.svg');
 }
 
-[id=game-interface] .loading .flash:after {
+[id=loading-content] .flash:after {
     content: "Loading...";
     position: absolute;
     bottom: 20px;
@@ -227,17 +230,18 @@ body {
     text-transform: uppercase;
 }
 
-[id=game-interface] .loading .flash[data-step="1"] {
+[id=loading-content] .flash[data-step="1"] {
   background-position: -190px 0;
 }
 
-[id=game-interface] .loading .flash[data-step="2"] {
+[id=loading-content] .flash[data-step="2"] {
   background-position: -350px 0;
 }
 
-[id=game-interface] .loading .flash[data-step="3"] {
+[id=loading-content] .flash[data-step="3"] {
   background-position: -590px 0;
 }
+
 
 
 [id=select-character] ul {

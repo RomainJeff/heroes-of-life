@@ -21,5 +21,5 @@ routingController.addRoute = function (routeName, callback) {
 routingController.call = function (routeName, params) {
     if (!params) var params = [];
 
-    return this.routes[routeName](params);
+    return (!this.routes[routeName]) ? null : this.routes[routeName](params);
 };
