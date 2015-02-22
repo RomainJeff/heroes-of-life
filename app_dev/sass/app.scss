@@ -556,19 +556,54 @@ body {
     display: none;
 }
 
-[id=resources-counter] {
+[id=cells-counter] {
     font-size: 30px;
     font-family: "Raleway";
     font-weight: 100;
     text-align: center;
 }
 
-[id=resources-counter] i {
+[id=cells-counter] i {
     font-style: normal;
 }
 
-[id=resources-counter] span {
+[id=cells-counter] span {
     display: block;
     font-size: 13px;
     color: rgba(255, 255, 255, 0.5);
+}
+
+@-webkit-keyframes bound {
+    from, to{}
+
+    0% {
+        transform: translateY(-25px);
+    }
+    10% {
+        transform: translateY(0);
+    }
+    30% {
+        transform: translateY(-8px);
+    } 
+    40% {
+        transform: translateY(0);
+    } 
+    50% {
+        transform: translateY(-5px);
+    } 
+    60% {
+        transform: translateY(0);
+    } 
+    70%, 100% {
+        transform: translateY(0);
+    }
+}
+
+.game-button {
+    -webkit-animation: bound 1.5s infinite linear;
+}
+
+.game-button.blocked,
+.game-button:hover {
+    -webkit-animation: none;
 }
