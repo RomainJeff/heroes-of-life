@@ -7,11 +7,11 @@ var pageController = {};
  * @param function callback Le callback
  */
 pageController.load = function (page, callback) {
-    var that = this;
+    var params = (!this.params) ? [] : this.params;
 
     $.get('libraries/views/'+ page +'.hbs', function (content) {
         callback(
-            Handlebars.compile(content)(that.params)
+            Handlebars.compile(content)(params)
         );
     });
 };
