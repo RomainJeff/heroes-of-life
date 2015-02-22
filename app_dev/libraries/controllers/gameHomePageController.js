@@ -9,6 +9,9 @@ gameHomePageController.launch = function () {
 
 gameHomePageController.playOnline = function () {
     loadingController.display();
+    pageController
+      .setParams({heroes: heroesModel})
+      .display('characters');
 
     setTimeout(function () {
         loadingController.hide();

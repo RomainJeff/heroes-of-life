@@ -9,9 +9,7 @@ indexController.home = function () {
 
 
 indexController.startExperience = function () {
-    pageController
-      .setParams({ heroes: heroesModel })
-      .display('home');
+    pageController.display('home');
     fullScreenController.enter('game-interface');
 };
 
