@@ -31,21 +31,35 @@ gulp.task('compile', function () {
 
 
 // Move files to prod without changing them
-gulp.task('move', ['clean'], function () {
+gulp.task('moveViews', ['cleanViews'], function () {
   return gulp.src(dev +"/libraries/views/**/*")
     .pipe(gulp.dest(prod +'/libraries/views'));
 });
 
 
 // Clean directories
-gulp.task('clean', function () {
+gulp.task('cleanViews', function () {
   return gulp.src(prod +"/libraries/views")
     .pipe(clean());
 });
 
 
+// Move files to prod without changing them
+gulp.task('moveImages', ['cleanImages'], function () {
+  return gulp.src(dev +"/resources/images/**/*")
+    .pipe(gulp.dest(prod +'/resources/images'));
+});
+
+
+// Clean directories
+gulp.task('cleanImages', function () {
+  return gulp.src(prod +"/resources/images")
+    .pipe(clean());
+});
+
+
 // Production task
-gulp.task('prod', ['compass', 'compile', 'move'], function () {});
+gulp.task('prod', ['compass', 'compile', 'moveViews', 'moveImages'], function () {});
 
 
 // Watch task
