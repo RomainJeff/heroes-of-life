@@ -16,7 +16,7 @@ gameHomePageController.playOnline = function () {
 
     setTimeout(function () {
         loadingController.hide();
-    }, 2000);
+    }, 1000);
 };
 
 
