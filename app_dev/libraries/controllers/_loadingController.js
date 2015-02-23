@@ -35,7 +35,7 @@ loadingController.start = function () {
         step = (step >= 3) ? 0 : (step + 1);
 
         container.attr('data-step', step);
-    }, 40);
+    }, 50);
 };
 
 
