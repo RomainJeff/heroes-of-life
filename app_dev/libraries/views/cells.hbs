@@ -1,6 +1,6 @@
 <script type="plain/text" id="character-saved">{{character}}</script>
 
-<section id="in-game">
+<section id="in-game" class="pane" data-active="true">
     <div class="title">
         <span>Play the game</span>
         <h2>Select your cells</h2>
@@ -12,10 +12,16 @@
             <p>
                 You have <b>25</b> resources you have to place on the grid and then click on "I am ready".<br>
                 Be strategic !
-                <h3 id="cells-counter"><i>25</i> <span>resources left</span></h3>
             </p>
-            <p class="button-container">
-                <button id="start-game" class="game-button blocked">I am ready</button>
+
+            <div class="button-container">
+                <button id="start-game" class="game-button"><span>Get</span> ready</button>
+                <h3 id="cells-counter"><i>25</i> <span>resources left</span></h3>
+                <div style="clear:both"></div>
+            </div>
+
+            <div class="time-container">
+                <b id="time-counter"></b> before the game starts
             </p>
         </aside>
 
