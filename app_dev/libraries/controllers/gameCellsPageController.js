@@ -33,7 +33,7 @@ gameCellsPageController.refreshCounter = function () {
 
     if (timeleft <= 0) return gameCellsPageController.callbackCounter();
 
-    $('#time-counter').html(minutes +":"+ seconds);
+    $('#time-counter').html(minutes +" : "+ seconds);
 };
 
 
@@ -48,7 +48,7 @@ gameCellsPageController.callbackCounter = function () {
 // Quand l'utilisateur clique sur "commencer le jeu"
 gameCellsPageController.startGame = function () {
     pageController
-        .setParams({title: 'Waiting for your mate'})
+        .setParams({message: 'Waiting for the other player'})
         .display('waiting');
 };
 

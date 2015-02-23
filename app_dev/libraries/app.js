@@ -5,3 +5,4 @@ indexController.home();
 routingController.addRoute('home', gameHomePageController.launch);
 routingController.addRoute('characters', gameCharactersPageController.launch);
 routingController.addRoute('cells', gameCellsPageController.launch);
+routingController.addRoute('waiting', gameWaitingPageController.launch);
