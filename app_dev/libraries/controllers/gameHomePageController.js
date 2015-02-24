@@ -21,6 +21,13 @@ gameHomePageController.displayRules = function () {
 };
 
 
+gameHomePageController.resetListeners = function () {
+    $('#game-content #quit-experience').unbind('click');
+    $('#game-content #play-online').unbind('click');
+    $('#game-content #display-rules').unbind('click');
+};
+
+
 /************/
 /** EVENTS **/
 /************/

@@ -18,7 +18,7 @@ indexController.listenFullscreenChanges = function () {
     $('#game-interface').toggleClass('active');
 
     if (!fullScreenController.is()) {
-        this.reset();
+        indexController.reset();
         socketInterface.send('disconnect');
     }
 };
@@ -27,5 +27,9 @@ indexController.listenFullscreenChanges = function () {
 indexController.reset = function () {
     gameCellsPageController.reset();
     gameWaitingPageController.reset();
+
+    gameHomePageController.resetListeners();
+    gameCharactersPageController.resetListeners();
+
     loadingController.hide();
 };

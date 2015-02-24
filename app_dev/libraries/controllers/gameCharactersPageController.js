@@ -14,6 +14,11 @@ gameCharactersPageController.selectChar = function () {
 };
 
 
+gameCharactersPageController.resetListeners = function () {
+    $('#game-content').unbind('click');
+};
+
+
 /************/
 /** EVENTS **/
 /************/
