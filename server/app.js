@@ -38,25 +38,25 @@ io.on('connection', function (socket) {
 
     // Quand le client nous demande de jouer
     // en ligne
-    socket.on('playOnline', function() {
+    socket.on('user:request', function() {
         global.events.game.playOnline(socket);
     });
 
 
     // Quand l'utilisateur choisis son personnage
-    socket.on('chooseCharacter', function (character) {
+    socket.on('character:choose', function (character) {
         global.events.game.selectChar(socket, character);
     });
 
 
     // Quand un joueur envoie sa grille
-    socket.on('launchGame', function (grille) {
+    socket.on('game:start', function (grille) {
         global.events.game.launch(socket, grille);
     });
 
 
     // Quand un joueur mets pause
-    socket.on('pauseGame', function () {
+    socket.on('game:pause', function () {
         global.events.game.pause(socket);
     });
 
