@@ -10,17 +10,39 @@ gameHomePageController.launch = function () {
 
 gameHomePageController.playOnline = function () {
     loadingController.display();
-    pageController
-      .setParams({heroes: heroesModel})
-      .display('characters');
 
-    setTimeout(function () {
-        loadingController.hide();
-    }, 1000);
+    socketInterface.send('user:request');
 };
 
 
 gameHomePageController.displayRules = function () {
     $(this).addClass('active');
     $('.rules').addClass('active');
+};
+
+
+/************/
+/** EVENTS **/
+/************/
+
+gameHomePageController.eventCanPlay = function (state) {
+    loadingController.hide();
+
+    if (state === true) {
+        pageController
+            .setParams({heroes: heroesModel})
+            .display('characters');
+    } else {
+        pageController
+            .setParams({message: "Waiting for the game to end"})
+            .display('waiting');
+    }
+};
+
+
+gameHomePageController.eventLogout = function () {
+    indexController.reset();
+    socketInterface.send('disconnect');
+
+    pageController.display('home');
 };
