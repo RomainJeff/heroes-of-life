@@ -16,4 +16,16 @@ indexController.startExperience = function () {
 
 indexController.listenFullscreenChanges = function () {
     $('#game-interface').toggleClass('active');
+
+    if (!fullScreenController.is()) {
+        this.reset();
+        socketInterface.send('disconnect');
+    }
+};
+
+
+indexController.reset = function () {
+    gameCellsPageController.reset();
+    gameWaitingPageController.reset();
+    loadingController.hide();
 };

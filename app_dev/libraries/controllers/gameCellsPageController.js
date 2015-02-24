@@ -6,6 +6,16 @@ var gameCellsPageController = {
 };
 
 
+// Reset l'objet
+gameCellsPageController.reset = function () {
+    this.cells = 25;
+    this.grille = null;
+    this.timeLeft = 240;
+
+    clearInterval(this.counter);
+};
+
+
 // Fonction executee au lancement de la page
 gameCellsPageController.launch = function () {
     var character = $('#character-saved').html();
