@@ -9,7 +9,23 @@ gameCharactersPageController.launch = function () {
 gameCharactersPageController.selectChar = function () {
     var character = $(this).attr('data-char');
     
-    pageController
-      .setParams({ character: character })
-      .display('cells');
+    loadingController.display();
+    socketInterface.send('character:choose', character);
+};
+
+
+/************/
+/** EVENTS **/
+/************/
+
+gameCharactersPageController.eventIsValid = function (character) {
+    loadingController.hide();
+
+    if (character != false) {
+        pageController
+          .setParams({ character: character })
+          .display('cells');
+    } else {
+        notificationController.display('This heroe is already in mission');
+    }
 };
