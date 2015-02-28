@@ -69,6 +69,8 @@ gameCellsPageController.cellsSelect = function () {
     var lineCoord   = $(this).parent().attr('id').replace('line-', '');
     var rowCoord    = $(this).attr('id').replace('row-', '');
 
+    console.log('Selectionne');
+
     if (isActive == "true") {
         $(this).attr('data-active', false);
         gameCellsPageController.cells++;
