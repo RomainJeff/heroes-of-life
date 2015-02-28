@@ -7,15 +7,18 @@ var charactersModelConstructor = require('./libraries/models/charactersModel.js'
 global.models = {
     sessions    : require('./libraries/models/sessionsModel.js'),
     users       : new usersModelConstructor(),
-    characters  : new charactersModelConstructor()
+    characters  : new charactersModelConstructor(),
+    grilles     : require('./libraries/models/grillesModel.js')
 };
 
 
 /** Controllers **/
 var gameControllerConstructor = require('./libraries/controllers/gameController.js')();
+var grilleControllerConstructor = require('./libraries/controllers/grilleController.js')();
 
 global.controllers = {
-    game : new gameControllerConstructor()
+    game:   new gameControllerConstructor(),
+    grille: new grilleControllerConstructor()
 };
 
 
@@ -50,8 +53,8 @@ io.on('connection', function (socket) {
 
 
     // Quand un joueur envoie sa grille
-    socket.on('game:start', function (grille) {
-        global.events.game.launch(socket, grille);
+    socket.on('user:ready', function (grille) {
+        global.events.game.ready(socket, grille);
     });
 
 

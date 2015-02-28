@@ -24,8 +24,16 @@ module.exports = {
         socket.emit('character:isValid', false);
     },
 
-    launch: function (socket, grille) {
-
+    ready: function (socket, grille) {
+        global.controllers.grille.countCells(grille, function (count) {
+            if (count > 25 || count < 3) {
+                var message = (count > 25) ? "You have used to much cells" : "You haven't used enough cells";
+                socket.emit('user:canStart', {state: false, message: message});
+            } else {
+                global.models.grilles.add(socket.id, grille);
+                socket.emit('user:canStart', {state: true, page: 'waiting'});
+            }
+        });
     },
 
     pause: function (socket) {

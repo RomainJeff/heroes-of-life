@@ -5,7 +5,8 @@ socketInterface.listen({
     'user:canPlay':         gameHomePageController.eventCanPlay,
     'character:isValid':    gameCharactersPageController.eventIsValid,
     'user:logout':          gameHomePageController.eventLogout,
-    'user:retryPlay':       gameWaitingPageController.eventRetryPlay
+    'user:retryPlay':       gameWaitingPageController.eventRetryPlay,
+    'user:canStart':        gameCellsPageController.eventCanStart
 });
 
 

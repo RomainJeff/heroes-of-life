@@ -102,10 +102,10 @@ grilleController.prototype.generate = function (taille, alea) {
 grilleController.prototype.draw = function (grilleID) {
     var toDisplay = "";
 
-    for(iLine = 0; iLine < this.taille[1]; iLine++) {
+    for(iLine = 0; iLine < this.taille[0]; iLine++) {
         toDisplay += '<div id="line-'+ iLine +'" class="line">';
 
-        for(iRow = 0; iRow < this.taille[0]; iRow++) {
+        for(iRow = 0; iRow < this.taille[1]; iRow++) {
             var active = (!this.grille[iLine][iRow]) ? "false" : "true";
             toDisplay += '<div class="row" id="row-'+ iRow +'" data-character="'+ this.getCharacter() +'" data-active="'+ active +'"></div>';
         }
