@@ -44,7 +44,7 @@ module.exports = {
 
             // Si le jeu est en cours
             // On deconnecte l'adversaire
-            if (global.controllers.game.isPlaying()) {
+            if (global.controllers.game.isPlaying() === true) {
                 newConnectionAuthorized = 2;
 
                 // On recupere l'adversaire

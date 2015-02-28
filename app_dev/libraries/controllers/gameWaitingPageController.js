@@ -29,3 +29,13 @@ gameWaitingPageController.alternHeroes = function () {
 gameWaitingPageController.reset = function () {
     clearInterval(this.interval);
 };
+
+
+/************/
+/** EVENTS **/
+/************/
+
+gameWaitingPageController.eventRetryPlay = function () {
+    gameWaitingPageController.reset();
+    gameHomePageController.playOnline();
+};

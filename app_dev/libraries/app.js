@@ -4,7 +4,8 @@ var socketInterface = new socketController('localhost:8080');
 socketInterface.listen({
     'user:canPlay':         gameHomePageController.eventCanPlay,
     'character:isValid':    gameCharactersPageController.eventIsValid,
-    'user:logout':          gameHomePageController.eventLogout
+    'user:logout':          gameHomePageController.eventLogout,
+    'user:retryPlay':       gameWaitingPageController.eventRetryPlay
 });
 
 
