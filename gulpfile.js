@@ -4,7 +4,12 @@ var dev         = "app_dev",
 var gulp        = require('gulp'),
     compass     = require('gulp-for-compass'),
     useref      = require('gulp-useref'),
-    clean       = require('gulp-clean');
+    clean       = require('gulp-clean'),
+    serve       = require('gulp-serve');
+
+
+// Serveur Web
+gulp.task('serve', serve('app_prod'));
 
 
 // Compile SASS
