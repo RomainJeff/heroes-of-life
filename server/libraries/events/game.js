@@ -16,12 +16,12 @@ module.exports = {
         // Si le personnage n'est pas deja pris
         if (!global.models.characters.isTaken(character)) {
             global.models.characters.add(socket.id, character);
-            socket.emit('character:isValid', character);
-
-            return true;
+            global.models.users.setCamp(socket.id, function (index) {
+                socket.emit('character:isValid', {state: true, character: character, position: index});
+            })
+        } else {
+            socket.emit('character:isValid', {state: false});
         }
-
-        socket.emit('character:isValid', false);
     },
 
     ready: function (socket, grille) {
@@ -30,7 +30,6 @@ module.exports = {
                 var message = (count > 25) ? "You have used to much cells" : "You haven't used enough cells";
                 socket.emit('user:canStart', {state: false, message: message});
             } else {
-                global.models.grilles.add(socket.id, grille);
                 socket.emit('user:canStart', {state: true, page: 'waiting'});
             }
         });

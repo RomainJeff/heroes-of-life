@@ -493,6 +493,60 @@ body {
     }
 }
 
+.grille[data-position="true"] {
+    margin-top: 30px;
+
+    .line:nth-child(1) {
+        &::after {
+            width: 110% !important;
+            left: -5% !important;
+            height: 2px;
+        }
+
+        &::before {
+            content: "ADVERSARY";
+            position: absolute;
+            font-size: 30px;
+            width: 100%;
+            top: -60px;
+            color: rgba(255, 255, 255, 0.3);
+            font-family: "Raleway";
+            text-align: center;
+        }
+
+        .row:nth-child(odd)::after {
+            display: none !important;
+        }
+    }
+}
+
+.grille[data-position="false"] {
+    margin-top: -30px;
+
+    .line:nth-child(7) {
+        &::after {
+            width: 110% !important;
+            left: -5% !important;
+            height: 2px;
+        }
+
+        &::before {
+            content: "ADVERSARY";
+            position: absolute;
+            font-size: 30px;
+            width: 100%;
+            bottom: -80px;
+            color: rgba(255, 255, 255, 0.3);
+            font-family: "Raleway";
+            text-align: center;
+        }
+
+        .row:nth-child(odd)::after {
+            display: none !important;
+        }
+    }
+}
+
 .grille .line:nth-child(odd) .row:nth-child(odd) {
     position: relative;
 
@@ -516,6 +570,7 @@ body {
         display: none;
     }
 }
+
 
 .grille .line .row:nth-child(15) {
     border-right: none !important;

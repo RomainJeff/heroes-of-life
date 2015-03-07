@@ -23,12 +23,12 @@ gameCharactersPageController.resetListeners = function () {
 /** EVENTS **/
 /************/
 
-gameCharactersPageController.eventIsValid = function (character) {
+gameCharactersPageController.eventIsValid = function (response) {
     loadingController.hide();
 
-    if (character != false) {
+    if (response.state != false) {
         pageController
-          .setParams({ character: character })
+          .setParams({ character: response.character, position: response.position })
           .display('cells');
     } else {
         notificationController.display('This heroe is already in mission');

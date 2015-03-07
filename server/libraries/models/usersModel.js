@@ -31,8 +31,41 @@ module.exports = function () {
      * Modifie les parametres d'un utilisateur
      * @param object params
      */
-    userModel.prototype.set = function(params) {
+    userModel.prototype.set = function(id, params) {
         this.users[id] = params;
+    };
+
+
+    /**
+     * Retourne le camp libre (top: 0, bottom: 1)
+     * @return boolean
+     *
+     */
+    userModel.prototype.getFreeCamp = function () {
+        for (index in this.users) {
+            if (this.users[index]) {
+                return !this.users[index].index;
+            }
+        }
+        
+        return false;
+    };
+
+
+    /**
+     * Definie le camp de l'utilisateur
+     * @param string id
+     * @param closure callback
+     *
+     */
+    userModel.prototype.setCamp = function (id, callback) {
+        var index = this.getFreeCamp();
+
+        this.set(id, {
+            index: index
+        });
+
+        callback(index);
     };
 
 
