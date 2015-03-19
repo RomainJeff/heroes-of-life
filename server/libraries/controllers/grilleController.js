@@ -111,6 +111,8 @@ grilleController.prototype.merge = function (grilles) {
         }
     }
 
+    this.grille.push(this.grille[0]); // On ajoute une ligne en +
+
     return this.grille;
 };
 
