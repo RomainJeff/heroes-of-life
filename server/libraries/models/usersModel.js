@@ -87,7 +87,8 @@ module.exports = function () {
 
         this.set(id, {
             index: index,
-            ready: false
+            ready: false,
+            pauses: 2
         });
 
         callback(index);
@@ -184,6 +185,20 @@ module.exports = function () {
 
         // Sinon il n'y a pas d'adversaire
         return false;
+    };
+
+
+    /**
+     * Exporte les informations sous forme d'objet d'un utilisateur
+     * @param string id
+     * @return object
+     */
+    userModel.prototype.export = function (id) {
+        return {
+            pauses: this.users[id].pauses,
+            character: global.models.characters.get()[id],
+            camps: this.users[id].index
+        };
     };
 
 

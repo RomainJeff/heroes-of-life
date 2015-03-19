@@ -38,9 +38,27 @@ module.exports = {
                 if (global.models.users.isReady(socket.id)) {
                     var adversary = global.models.users.getAdversary(socket.id);
                     global.controllers.game.setPlaying(true);
-                    global.models.sessions.get(adversary).emit('user:adversaryReady', []);
+                    global.models.sessions.get(adversary).emit('user:adversaryReady', {
+                        infos: {
+                            grille: global.controllers.grille.get(),
+                            users: [
+                                global.models.users.export(adversary),
+                                global.models.users.export(socket.id)
+                            ]
+                        }
+                    });
 
-                    socket.emit('user:canStart', {state: true, page: 'fight'});
+                    socket.emit('user:canStart', {
+                        state: true,
+                        page: 'fight',
+                        infos: {
+                            grille: global.controllers.grille.get(),
+                            users: [
+                                global.models.users.export(socket.id),
+                                global.models.users.export(adversary)
+                            ]
+                        }
+                    });
                 } else {
                     socket.emit('user:canStart', {state: true, page: 'waiting'});
                 }
