@@ -2,12 +2,13 @@ var grilleController = function() {
 
     this.grille = [];
     this.grilleTempo = [];
+    this.grilleNotMerged = [];
 };
 
 
 /**
  * Defini l'etat d'une cellule
- * @param int line 
+ * @param int line
  * @param int row
  * @param bool value
  *
@@ -19,13 +20,37 @@ grilleController.prototype.setRow = function (line, row, value) {
 
 /**
  * Defini l'etat d'une cellule temporaire
- * @param int line 
+ * @param int line
  * @param int row
  * @param bool value
  *
  */
 grilleController.prototype.setRowTempo = function (line, row, value) {
     this.grilleTempo[line][row] = value;
+};
+
+
+/**
+ * Recupere les grilles pas merge
+ * @return object
+ *
+ */
+grilleController.prototype.getNotMerged = function () {
+    return this.grilleNotMerged;
+};
+
+
+/**
+ * Ajoute une grille a merger
+ * @param int index
+ * @param object grille
+ *
+ */
+grilleController.prototype.addNotMerged = function (index, grille) {
+    if (index) index = 1;
+    else index = 0;
+
+    this.grilleNotMerged[index] = grille;
 };
 
 
@@ -51,8 +76,8 @@ grilleController.prototype.getTempo = function () {
 };
 
 
-/** 
- * Retourne la taille de la grille 
+/**
+ * Retourne la taille de la grille
  * @return object (0: line, 1: row)
  *
  */
@@ -71,14 +96,18 @@ grilleController.prototype.getSize = function () {
  *
  */
 grilleController.prototype.merge = function (grilles) {
-    // On parcour les grilles
     for (i = 0; i < grilles.length; i++) {
         // On parcour les lignes
-        for (line = (i * grilles[i].length / 2); line < grilles[i].length / (2 - i); line++) {
-            // On parcours les rows
-            for (row = 0; row < grilles[i][line].length; row++) {
+        for (line = (i * (Math.ceil(15 / 2))); line < (Math.ceil(15 / (2 - i))); line++) {
+            this.grille[line] = [];
+            var oldLine = 0;
 
+            // On parcours les rows
+            for (row = 0; row < grilles[i][oldLine].length; row++) {
+                this.grille[line][row] = grilles[i][oldLine][row];
             }
+
+            oldLine++;
         }
     }
 

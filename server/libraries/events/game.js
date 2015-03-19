@@ -32,15 +32,21 @@ module.exports = {
             } else {
                 // On definie l'etat du joueur actuel comme pret a commencer
                 global.models.users.setReady(socket.id, true);
+                // On ajoute la grille du joueur
+                global.controllers.grille.addNotMerged(global.models.users.getPlaying(socket.id).index, grille);
+
 
                 // Si l'adversaire est deja pret on envoie directement sur la page de combat
                 // et on demande a l'adversaire d'afficher la page de combat (avec le jeu de la vie)
                 if (global.models.users.isReady(socket.id)) {
                     var adversary = global.models.users.getAdversary(socket.id);
+
+                    // On defini le jeu en tant que commence
                     global.controllers.game.setPlaying(true);
+
                     global.models.sessions.get(adversary).emit('user:adversaryReady', {
                         infos: {
-                            grille: global.controllers.grille.get(),
+                            grille: global.controllers.grille.merge(global.controllers.grille.getNotMerged()),
                             users: [
                                 global.models.users.export(adversary),
                                 global.models.users.export(socket.id)
