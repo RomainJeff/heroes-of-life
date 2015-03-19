@@ -1,6 +1,6 @@
 module.exports = {
 
-    playOnline: function (socket) {        
+    playOnline: function (socket) {
         // Si il reste de la place on place le joueur
         // En ligne sinon on le place en attente
         if (global.models.users.getCountPlaying() < 2) {
@@ -30,7 +30,20 @@ module.exports = {
                 var message = (count > 25) ? "You have used to much cells" : "You haven't used enough cells";
                 socket.emit('user:canStart', {state: false, message: message});
             } else {
-                socket.emit('user:canStart', {state: true, page: 'waiting'});
+                // On definie l'etat du joueur actuel comme pret a commencer
+                global.models.users.setReady(socket.id, true);
+
+                // Si l'adversaire est deja pret on envoie directement sur la page de combat
+                // et on demande a l'adversaire d'afficher la page de combat (avec le jeu de la vie)
+                if (global.models.users.isReady(socket.id)) {
+                    var adversary = global.models.users.getAdversary(socket.id);
+                    global.controllers.game.setPlaying(true);
+                    global.models.sessions.get(adversary).emit('user:adversaryReady', []);
+
+                    socket.emit('user:canStart', {state: true, page: 'fight'});
+                } else {
+                    socket.emit('user:canStart', {state: true, page: 'waiting'});
+                }
             }
         });
     },
@@ -39,7 +52,7 @@ module.exports = {
 
     },
 
-    logOut: function (socket) {        
+    logOut: function (socket) {
         // Si le client etait en jeu
         if (global.models.users.exists(socket.id, true)) {
             // Suppression du joueur courant

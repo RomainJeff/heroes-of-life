@@ -37,6 +37,30 @@ module.exports = function () {
 
 
     /**
+     * Definie l'etat Ready du joueur donne
+     * @param string id
+     * @param bool ready
+     */
+    userModel.prototype.setReady = function (id, ready) {
+        this.users[id].ready = ready;
+    };
+
+
+    /**
+     * Verifie si un adversaire est pret
+     * @param string id
+     * @return bool
+     */
+    userModel.prototype.isReady = function (id) {
+        for(user in this.users) {
+            if (this.users[user].ready && user != id) {
+                return true;
+            }
+        }
+    };
+
+
+    /**
      * Retourne le camp libre (top: 0, bottom: 1)
      * @return boolean
      *
@@ -47,7 +71,7 @@ module.exports = function () {
                 return !this.users[index].index;
             }
         }
-        
+
         return false;
     };
 
@@ -62,7 +86,8 @@ module.exports = function () {
         var index = this.getFreeCamp();
 
         this.set(id, {
-            index: index
+            index: index,
+            ready: false
         });
 
         callback(index);

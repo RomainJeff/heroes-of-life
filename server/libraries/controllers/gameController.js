@@ -90,6 +90,17 @@ game.prototype.hasToLive = function (line, row) {
 };
 
 
+/**
+ * Definie l'etat de jeu de la partie en cours
+ * @param bool state
+ *
+ */
+game.prototype.setPlaying = function (state) {
+    this.playing = state;
+};
+
+
+
 module.exports = function () {
     return game;
 };

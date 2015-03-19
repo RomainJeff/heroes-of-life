@@ -39,3 +39,9 @@ gameWaitingPageController.eventRetryPlay = function () {
     gameWaitingPageController.reset();
     gameHomePageController.playOnline();
 };
+
+
+gameWaitingPageController.eventAdversaryReady = function (gameCells) {
+    gameWaitingPageController.reset();
+    pageController.display('fight');
+};
