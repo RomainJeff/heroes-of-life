@@ -44,6 +44,7 @@ gameWaitingPageController.eventRetryPlay = function () {
 gameWaitingPageController.eventAdversaryReady = function (response) {
     gameWaitingPageController.reset();
     gameFightPageController.setGrille(response.infos.grille);
+    gameFightPageController.setUsers(response.infos.users);
 
     pageController.setParams(response);
     pageController.display('fight');

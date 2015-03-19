@@ -1,7 +1,7 @@
 var grilleController = function(){
 
     this.grille = [];
-    this.character = "green";
+    this.character = "superman";
     this.taille = [10, 10];
 
 };
@@ -9,7 +9,7 @@ var grilleController = function(){
 
 /**
  * Defini l'etat d'une cellule
- * @param int line 
+ * @param int line
  * @param int row
  * @param bool value
  *
@@ -52,8 +52,8 @@ grilleController.prototype.getCharacter = function () {
 };
 
 
-/** 
- * Retourne la taille de la grille 
+/**
+ * Retourne la taille de la grille
  * @return int
  *
  */
@@ -94,20 +94,28 @@ grilleController.prototype.generate = function (taille, alea) {
 };
 
 
-/** 
+/**
  * Dessine la grille sur la page
  * @param string grilleID
  *
  */
-grilleController.prototype.draw = function (grilleID) {
+grilleController.prototype.draw = function (grilleID, users) {
     var toDisplay = "";
+    var userChar = this.getCharacter();
+    var users = (!users) ? [] : users;
 
     for(iLine = 0; iLine < this.taille[0]; iLine++) {
         toDisplay += '<div id="line-'+ iLine +'" class="line">';
 
         for(iRow = 0; iRow < this.taille[1]; iRow++) {
-            var active = (!this.grille[iLine][iRow]) ? "false" : "true";
-            toDisplay += '<div class="row" id="row-'+ iRow +'" data-character="'+ this.getCharacter() +'" data-active="'+ active +'"></div>';
+            var active = (this.grille[iLine][iRow] <= 0) ? "false" : "true";
+
+            if (users.length > 0) {
+                var index = (this.grille[iLine][iRow] - 1);
+                userChar = (this.grille[iLine][iRow] == 0) ? null : users[index].character;
+            }
+
+            toDisplay += '<div class="row" id="row-'+ iRow +'" data-character="'+ userChar +'" data-active="'+ active +'"></div>';
         }
 
         toDisplay += '<div class="clear"></div>';

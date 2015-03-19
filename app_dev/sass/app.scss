@@ -944,8 +944,9 @@ body {
 .fight-character .char {
     @include transform(skew(-10deg) rotate(40deg));
     position: absolute;
-    width: 520px;
-    height: 400px;
+    width: 100px;
+    height: auto;
+    background-size: 100px;
     left: 0;
     top: 0;
 }
@@ -955,14 +956,18 @@ body {
     font-size: 30px;
     text-align: center;
     position: absolute;
-    bottom: -30px;
+    bottom: -45px;
     left: calc(50% - 45px);
     width: 150px;
+    height: 20px;
     font-weight: bold;
+    font-family: "Raleway";
 }
 
 .fight-character-container .pauses::after {
     content: "left";
+    text-transform: uppercase;
+    font-family: "Raleway";
     font-weight: 100;
     font-size: 20px;
     position: absolute;
@@ -984,6 +989,10 @@ body {
         position: absolute;
 
         .line .row:hover {
+            background: default;
+        }
+
+        .line .row[data-active="false"]:hover {
             background: transparent;
         }
     }

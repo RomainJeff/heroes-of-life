@@ -97,21 +97,29 @@ grilleController.prototype.getSize = function () {
  */
 grilleController.prototype.merge = function (grilles) {
     for (i = 0; i < grilles.length; i++) {
+        var oldLine = 0;
+        
         // On parcour les lignes
         for (line = (i * (Math.ceil(15 / 2))); line < (Math.ceil(15 / (2 - i))); line++) {
             this.grille[line] = [];
-            var oldLine = 0;
 
             // On parcours les rows
             for (row = 0; row < grilles[i][oldLine].length; row++) {
-                this.grille[line][row] = grilles[i][oldLine][row];
+                // On definie les cellules vivantes et mortes
+                // Joueur1 = 1 = vivante
+                // Joueur2 = 2 = vivante
+                if (i == 0) {
+                    this.grille[line][row] = grilles[i][oldLine][row];
+                } else {
+                    this.grille[line][row] = (grilles[i][oldLine][row] == 1) ? 2 : 0;
+                }
             }
 
             oldLine++;
         }
     }
 
-    this.grille.push(this.grille[0]); // On ajoute une ligne en +
+    //this.grille.push(this.grille[0]); // On ajoute une ligne en +
 
     return this.grille;
 };

@@ -123,6 +123,7 @@ gameCellsPageController.eventCanStart = function (response) {
                 infos: response.infos
             };
             gameFightPageController.setGrille(response.infos.grille);
+            gameFightPageController.setUsers(response.infos.users);
             break;
     }
 
