@@ -3,7 +3,7 @@ var indexController = {};
 
 indexController.home = function () {
     $('#start-experience').on('click', this.startExperience);
-    
+
     fullScreenController.listen(this.listenFullscreenChanges);
 };
 
@@ -27,6 +27,7 @@ indexController.listenFullscreenChanges = function () {
 indexController.reset = function () {
     gameCellsPageController.reset();
     gameWaitingPageController.reset();
+    notificationController.reset();
 
     gameHomePageController.resetListeners();
     gameCharactersPageController.resetListeners();

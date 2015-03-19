@@ -105,12 +105,14 @@ gameCellsPageController.refreshCells = function () {
 
 gameCellsPageController.eventCanStart = function (response) {
     if (response.state === false) {
-        notificationController.display(response.message);
+        notificationController.display(response.message, 'Select my cells');
 
         return false;
     }
 
     pageController
-        .setParams({message: 'Waiting for the other player'})
+        .setParams({
+            message: 'Waiting for the other player'
+        })
         .display(response.page);
 };

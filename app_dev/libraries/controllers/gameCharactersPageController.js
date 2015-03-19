@@ -8,7 +8,7 @@ gameCharactersPageController.launch = function () {
 
 gameCharactersPageController.selectChar = function () {
     var character = $(this).attr('data-char');
-    
+
     loadingController.display();
     socketInterface.send('character:choose', character);
 };
@@ -31,6 +31,6 @@ gameCharactersPageController.eventIsValid = function (response) {
           .setParams({ character: response.character, position: response.position })
           .display('cells');
     } else {
-        notificationController.display('This heroe is already in mission');
+        notificationController.display('This heroe is already in mission', 'Choose another one');
     }
 };

@@ -626,7 +626,7 @@ body {
     border: solid 1px rgba(255, 255, 255, 0.3);
 }
 
-.game-button {    
+.game-button {
     cursor: pointer;
     outline: none;
     background: transparent;
@@ -813,4 +813,100 @@ body {
     text-transform: uppercase;
     padding-top: 15px;
     box-sizing: border-box;
+}
+
+
+/** NOTIFICATION **/
+.notification-overlay {
+  position: fixed;
+  z-index: 10;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(0, 0, 0, 0.6);
+}
+
+.notification-container {
+  color: white;
+  position: fixed;
+  z-index: 11;
+  top: calc(50vh - 75px);
+  left: calc(50% - 250px);
+  height: 150px;
+  width: 500px;
+}
+
+.notification-container .notification {
+  text-align: center;
+  color: #BCAB97;
+  -webkit-clip-path: polygon(10% 0, 90% 0, 100% 100%, 0% 100%);
+  background: #282828;
+  width: 100%;
+  height: 90px;
+  box-sizing: border-box;
+  padding-left: 40px;
+  padding-right: 40px;
+  padding-top: 17px;
+  font-size: 25px;
+  font-weight: 100;
+  text-transform: uppercase;
+  font-family: "Raleway";
+  position: relative;
+  transition-duration: 200ms;
+  transform: translateX(-100vw);
+}
+
+.notification-container.active .notification {
+  -webkit-animation: enterLeft 0.6s;
+  transform: translateX(0);
+}
+
+@-webkit-keyframes enterLeft {
+  from {
+    transform: translateX(-100vw);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.notification-container .notification-button {
+  -webkit-clip-path: polygon(0 0, 100% 0, 90% 100%, 10% 100%);
+  background: #BCAB97;
+  color: rgba(0, 0, 0, 0.8);
+  border: 0;
+  height: 40px;
+  width: 50%;
+  margin: auto;
+  display: block;
+  font-size: 14px;
+  font-weight: 400;
+  font-family: "Raleway";
+  text-transform: uppercase;
+  padding-left: 40px;
+  padding-right: 40px;
+  cursor: pointer;
+  transition-delay: 0.06s;
+  transition-duration: 200ms;
+  transform: translateX(-100vw);
+}
+
+.notification-container.active .notification-button {
+  transform: translateX(0);
+  -webkit-animation: enterLeftButton 0.6s;
+}
+
+@-webkit-keyframes enterLeftButton {
+  from, to {}
+  0%, 29% {
+    transform: translateX(-100vw);
+  }
+  100% {
+    transform: translateY(0);
+  }
+}
+
+.notification-container .notification-button:hover {
+  background: #B09F8B;
 }
