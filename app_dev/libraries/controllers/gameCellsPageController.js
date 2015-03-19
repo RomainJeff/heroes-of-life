@@ -110,9 +110,23 @@ gameCellsPageController.eventCanStart = function (response) {
         return false;
     }
 
+    var params = [];
+
+    switch (response.page) {
+        case "waiting":
+            params = {
+                message: "Waiting for the other player"
+            };
+            break;
+        case "fight":
+            params = {
+                infos: response.infos
+            };
+            gameFightPageController.setGrille(response.infos.grille);
+            break;
+    }
+
     pageController
-        .setParams({
-            message: 'Waiting for the other player'
-        })
+        .setParams(params)
         .display(response.page);
 };

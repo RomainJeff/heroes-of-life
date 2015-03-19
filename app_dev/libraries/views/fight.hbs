@@ -1,5 +1,27 @@
 <section id="fight" class="pane" data-active="true">
-    <div class="container">
-        <h1>Fight</h1>
+    <div class="container fight">
+
+        <!-- Personnage du joueur courant -->
+        <aside class="left">
+            <div class="fight-character-container">
+                <div class="fight-character">
+                    <div class="char" style="background: url('resources/images/chars/waiting_{{ infos.users.0.character }}.png');"></div>
+                </div>
+                <div class="pauses">{{ infos.users.0.pauses }}</div>
+            </div>
+        </aside>
+
+        <!-- Personnage de l'adversaire -->
+        <aside class="right">
+            <div class="fight-character-container">
+                <div class="fight-character">
+                    <div class="char" style="background: url('resources/images/chars/waiting_{{ infos.users.1.character }}.png');"></div>
+                </div>
+                <div class="pauses">{{ infos.users.1.pauses }}</div>
+            </div>
+        </aside>
+
+        <!-- Grille -->
+        <div id="grille" class="grille"></div>
     </div>
 </section>

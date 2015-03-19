@@ -41,7 +41,10 @@ gameWaitingPageController.eventRetryPlay = function () {
 };
 
 
-gameWaitingPageController.eventAdversaryReady = function (gameCells) {
+gameWaitingPageController.eventAdversaryReady = function (response) {
     gameWaitingPageController.reset();
+    gameFightPageController.setGrille(response.infos.grille);
+
+    pageController.setParams(response);
     pageController.display('fight');
 };

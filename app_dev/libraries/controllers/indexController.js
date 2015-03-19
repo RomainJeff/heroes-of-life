@@ -27,6 +27,7 @@ indexController.listenFullscreenChanges = function () {
 indexController.reset = function () {
     gameCellsPageController.reset();
     gameWaitingPageController.reset();
+    gameFightPageController.reset();
     notificationController.reset();
 
     gameHomePageController.resetListeners();
