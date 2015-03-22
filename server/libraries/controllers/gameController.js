@@ -28,7 +28,7 @@ game.prototype.isPlaying = function () {
  *
  */
 game.prototype.startGame = function (callback) {
-    this.interval = setInterval(callback, 1500);
+    this.interval = setInterval(callback, 800);
     this.setPlaying(true);
 };
 
@@ -70,7 +70,7 @@ game.prototype.update = function (callback) {
  *
  */
 game.prototype.moveGrille = function (callback) {
-    console.log('');
+    //console.log('');
 
     // Mise a jour de la grille
     for(var i = 0; i < global.controllers.grille.getSize()[0]; ++i)
