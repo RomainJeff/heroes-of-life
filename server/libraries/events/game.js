@@ -69,6 +69,14 @@ module.exports = {
                         global.controllers.game.update(function (grille) {
                             socket.emit('game:refresh', grille);
                             global.models.sessions.get(adversary).emit('game:refresh', grille);
+
+                            // Verifie si le jeu est fini
+                            global.controllers.game.isEnded(grille, function (winner) {
+                                socket.emit('game:end', winner);
+                                global.models.sessions.get(adversary).emit('game:end', winner);
+
+                                global.controllers.game.stopGame();
+                            });
                         });
                     });
 

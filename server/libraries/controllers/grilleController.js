@@ -146,6 +146,25 @@ grilleController.prototype.countCells = function (grille, callback) {
 };
 
 
+/**
+ * Compte les cellules activent d'un joueurs
+ * @param int player
+ * @return int
+ *
+ */
+grilleController.prototype.cellsPlayer = function (player) {
+    var count = 0;
+
+    for (line in this.grille) {
+        for (row in this.grille[line]) {
+            if (this.grille[line][row] == (player + 1)) count++;
+        }
+    }
+
+    return count;
+};
+
+
 
 module.exports = function () {
     return grilleController;

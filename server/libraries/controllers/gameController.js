@@ -1,4 +1,5 @@
 var neightborControllerConstructor = require('./neighborController.js')();
+var schemaController = require('./schemaController.js')();
 
 
 /**
@@ -119,6 +120,32 @@ game.prototype.hasToLive = function (line, row) {
         } else {
             global.controllers.grille.setRowTempo(line, row, 0);
         }
+    }
+};
+
+
+/**
+ * Verifie si le jeu est fini
+ * @param callback
+ *
+ */
+game.prototype.isEnded = function (grille, callback) {
+    if (schemaController.hasSchema(grille)) {
+        var cellsPlayerOne = global.controllers.grille.cellsPlayer(0);
+        var cellsPlayerTwo = global.controllers.grille.cellsPlayer(1);
+
+        // On verifie qui a le plus de cellule
+        if (cellsPlayerOne > cellsPlayerTwo) {
+            callback(0); // Player 1 gagne
+        } else if (cellsPlayerTwo > cellsPlayerOne) {
+            callback(1); // Player 2 gagne
+        } else {
+            callback(-1); // Egalite
+        }
+    } else if (cellsPlayerOne <= 0) {
+        callback(1); // Player 2 gagne
+    } else if (cellsPlayerTwo <= 0) {
+        callback(0); // Player 1 gagne
     }
 };
 

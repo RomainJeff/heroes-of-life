@@ -36,3 +36,9 @@ gameFightPageController.eventRefresh = function (grille) {
     gameFightPageController.grille.grille = grille;
     gameFightPageController.grille.draw('grille', gameFightPageController.users);
 };
+
+
+gameFightPageController.eventEnd = function (winner) {
+    alert(winner +" win the game !");
+    socketInterface.send('disconnect');
+};
