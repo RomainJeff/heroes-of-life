@@ -933,11 +933,40 @@ body {
 }
 
 .right .fight-character-container {
-    bottom: 0;
+    bottom: 0px;
 }
 
 .left .fight-character-container {
     top: 0;
+}
+
+.power {
+    position: absolute;
+    width: 100%;
+    color: #fff;
+    border: 0;
+    background: transparent;
+    font-family: "Raleway";
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    left: 30px;
+    right: 0;
+    cursor: pointer;
+    outline: none;
+    transition-duration: 200ms;
+}
+
+.left .power {
+    top: 200px;
+}
+
+.right .power {
+    bottom: -30px;
+}
+
+.power:hover {
+    text-shadow: 0 0 1px #fff;
 }
 
 
@@ -945,10 +974,34 @@ body {
     @include transform(skew(-10deg) rotate(40deg));
     position: absolute;
     width: 100px;
-    height: auto;
+    height: 100px;
     background-size: 100px;
     left: 0;
     top: 0;
+
+    &.flash {
+        background: url('../resources/images/chars/waiting_flash.png');
+        background-size: 130px;
+        background-position-x: -40px;
+    }
+
+    &.batman {
+        background: url('../resources/images/chars/waiting_batman.png');
+        background-size: 130px;
+        background-position-x: -40px;
+    }
+
+    &.green {
+        background: url('../resources/images/chars/waiting_green.png');
+        background-size: 130px;
+        background-position-x: -40px;
+    }
+
+    &.superman {
+        background: url('../resources/images/chars/waiting_superman.png');
+        background-size: 130px;
+        background-position-x: -40px;
+    }
 }
 
 .fight-character-container .pauses {
@@ -969,7 +1022,7 @@ body {
     text-transform: uppercase;
     font-family: "Raleway";
     font-weight: 100;
-    font-size: 20px;
+    font-size: 15px;
     position: absolute;
     text-align: center;
     left: 0;

@@ -3,22 +3,42 @@
 
         <!-- Personnage du joueur courant -->
         <aside class="left">
-            <div class="fight-character-container">
-                <div class="fight-character">
-                    <div class="char" style="background: url('resources/images/chars/waiting_{{ infos.users.0.character }}.png');"></div>
+            {{#if infos.users.0.camps}}
+                <div class="fight-character-container">
+                    <div class="fight-character">
+                        <div class="char {{ infos.users.1.character }}"></div>
+                    </div>
+                    <div class="pauses">{{ infos.users.1.pauses }}</div>
                 </div>
-                <div class="pauses">{{ infos.users.0.pauses }}</div>
-            </div>
+            {{else}}
+                <div class="fight-character-container">
+                    <div class="fight-character">
+                        <div class="char {{ infos.users.0.character }}"></div>
+                    </div>
+                    <div class="pauses">{{ infos.users.0.pauses }}</div>
+                </div>
+                <button class="power">Activate your power</button>
+            {{/if}}
         </aside>
 
         <!-- Personnage de l'adversaire -->
         <aside class="right">
-            <div class="fight-character-container">
-                <div class="fight-character">
-                    <div class="char" style="background: url('resources/images/chars/waiting_{{ infos.users.1.character }}.png');"></div>
+            {{#if infos.users.0.camps}}
+                <div class="fight-character-container" style="bottom: 80px">
+                    <div class="fight-character">
+                        <div class="char {{ infos.users.0.character }}"></div>
+                    </div>
+                    <div class="pauses">{{ infos.users.0.pauses }}</div>
                 </div>
-                <div class="pauses">{{ infos.users.1.pauses }}</div>
-            </div>
+                <button class="power">Activate your power</button>
+            {{else}}
+                <div class="fight-character-container">
+                    <div class="fight-character">
+                        <div class="char {{ infos.users.1.character }}"></div>
+                    </div>
+                    <div class="pauses">{{ infos.users.1.pauses }}</div>
+                </div>
+            {{/if}}
         </aside>
 
         <!-- Grille -->

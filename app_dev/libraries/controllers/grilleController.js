@@ -95,6 +95,22 @@ grilleController.prototype.generate = function (taille, alea) {
 
 
 /**
+ * Selectionne un utilisateur
+ * @param object users
+ * @param int index
+ * @return object
+ *
+ */
+grilleController.prototype.selectUser = function (users, index) {
+    for (user in users) {
+        if (users[user].camps == index) {
+            return users[user];
+        }
+    }
+};
+
+
+/**
  * Dessine la grille sur la page
  * @param string grilleID
  *
@@ -110,9 +126,16 @@ grilleController.prototype.draw = function (grilleID, users) {
         for(iRow = 0; iRow < this.taille[1]; iRow++) {
             var active = (this.grille[iLine][iRow] <= 0) ? "false" : "true";
 
+            // Attribution des personnages
             if (users.length > 0) {
                 var index = (this.grille[iLine][iRow] - 1);
-                userChar = (this.grille[iLine][iRow] == 0) ? null : users[index].character;
+
+                if (index >= 0) {
+                    var user = this.selectUser(users, index);
+                    userChar = user.character;
+                } else {
+                    userChar = null;
+                }
             }
 
             toDisplay += '<div class="row" id="row-'+ iRow +'" data-character="'+ userChar +'" data-active="'+ active +'"></div>';
