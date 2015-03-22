@@ -71,7 +71,7 @@ game.prototype.update = function (callback) {
  */
 game.prototype.moveGrille = function (callback) {
     console.log('');
-    
+
     // Mise a jour de la grille
     for(var i = 0; i < global.controllers.grille.getSize()[0]; ++i)
     {
@@ -101,19 +101,21 @@ game.prototype.hasToLive = function (line, row) {
     // On recupere le nombre de voisins
     var neighbors = new neightborControllerConstructor(global.controllers.grille, line, row)
                     .getAlive();
+    var valueAlive = (neighbors[0] > neighbors[1]) ? 1 : 2;
 
     // Si cellule morte
     if (global.controllers.grille.get()[line][row] == 0) {
         // Si 3 voisins = naissance
-        if (neighbors == 3) {
-            global.controllers.grille.setRowTempo(line, row, 1);
+        if (neighbors.total == 3) {
+            global.controllers.grille.setRowTempo(line, row, valueAlive);
+
         } else {
             global.controllers.grille.setRowTempo(line, row, 0);
         }
     } else {
         // Si 2 ou 3 voisins = vivante
-        if (neighbors == 2 || neighbors == 3) {
-            global.controllers.grille.setRowTempo(line, row, 1);
+        if (neighbors.total == 2 || neighbors.total == 3) {
+            global.controllers.grille.setRowTempo(line, row, valueAlive);
         } else {
             global.controllers.grille.setRowTempo(line, row, 0);
         }

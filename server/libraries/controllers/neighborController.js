@@ -9,7 +9,11 @@ var neighborController = function(grilleController, line, row){
     this.grilleController = grilleController;
     this.line = line;
     this.row = row;
-    this.neighbors = 0;
+    this.neighbors = {
+        total: 0,
+        0: 0,
+        1: 0
+    };
 };
 
 
@@ -26,21 +30,41 @@ neighborController.prototype.getAlive = function () {
         return this.neighbors;
     }
 
-
-    if (this.grilleController.get()[this.line][this.row - 1] > 0) this.neighbors++;
-    if (this.grilleController.get()[this.line][this.row + 1] > 0) this.neighbors++;
-
-    if (this.grilleController.get()[this.line - 1][this.row - 1] > 0) this.neighbors++;
-    if (this.grilleController.get()[this.line + 1][this.row - 1] > 0) this.neighbors++;
-
-    if (this.grilleController.get()[this.line - 1][this.row + 1] > 0) this.neighbors++;
-    if (this.grilleController.get()[this.line + 1][this.row + 1] > 0) this.neighbors++;
-
-    if (this.grilleController.get()[this.line - 1][this.row] > 0) this.neighbors++;
-    if (this.grilleController.get()[this.line + 1][this.row] > 0) this.neighbors++;
+    // Joueur 1
+    this.neighbors[0] = this.getPlayer(1);
+    // Joueur 2
+    this.neighbors[1] = this.getPlayer(2);
+    // Total
+    this.neighbors.total = this.neighbors[0] + this.neighbors[1];
 
     return this.neighbors;
 };
+
+
+/**
+ * Retourne le nombre de voisins d'un joueur donnee
+ * @param int value
+ * @return int
+ *
+ */
+neighborController.prototype.getPlayer = function (value) {
+    var neighbors = 0;
+
+    if (this.grilleController.get()[this.line][this.row - 1] == value) neighbors++;
+    if (this.grilleController.get()[this.line][this.row + 1] == value) neighbors++;
+
+    if (this.grilleController.get()[this.line - 1][this.row - 1] == value) neighbors++;
+    if (this.grilleController.get()[this.line + 1][this.row - 1] == value) neighbors++;
+
+    if (this.grilleController.get()[this.line - 1][this.row + 1] == value) neighbors++;
+    if (this.grilleController.get()[this.line + 1][this.row + 1] == value) neighbors++;
+
+    if (this.grilleController.get()[this.line - 1][this.row] == value) neighbors++;
+    if (this.grilleController.get()[this.line + 1][this.row] == value) neighbors++;
+
+    return neighbors;
+};
+
 
 /**
  * Verifie la validite de l'index courant
