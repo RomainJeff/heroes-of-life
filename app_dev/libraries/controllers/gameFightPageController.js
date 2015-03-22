@@ -26,3 +26,13 @@ gameFightPageController.setGrille = function (grille) {
 gameFightPageController.launch = function () {
     gameFightPageController.grille.draw('grille', gameFightPageController.users);
 };
+
+
+/************/
+/** EVENTS **/
+/************/
+
+gameFightPageController.eventRefresh = function (grille) {
+    gameFightPageController.grille.grille = grille;
+    gameFightPageController.grille.draw('grille', gameFightPageController.users);
+};

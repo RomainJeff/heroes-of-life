@@ -7,7 +7,8 @@ socketInterface.listen({
     'user:logout':          gameHomePageController.eventLogout,
     'user:retryPlay':       gameWaitingPageController.eventRetryPlay,
     'user:canStart':        gameCellsPageController.eventCanStart,
-    'user:adversaryReady':  gameWaitingPageController.eventAdversaryReady
+    'user:adversaryReady':  gameWaitingPageController.eventAdversaryReady,
+    'game:refresh':         gameFightPageController.eventRefresh
 });
 
 

@@ -67,7 +67,8 @@ module.exports = {
                     // On demarre le jeu
                     global.controllers.game.startGame(function () {
                         global.controllers.game.update(function (grille) {
-                            //console.log(grille);
+                            socket.emit('game:refresh', grille);
+                            global.models.sessions.get(adversary).emit('game:refresh', grille);
                         });
                     });
 
