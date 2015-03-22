@@ -75,16 +75,16 @@ game.prototype.moveGrille = function (callback) {
     // Mise a jour de la grille
     for(var i = 0; i < global.controllers.grille.getSize()[0]; ++i)
     {
-        var debugChar = "";
+        //var debugChar = "";
 
         for(var j = 0; j < global.controllers.grille.getSize()[1]; ++j)
         {
-            debugChar += " "+ global.controllers.grille.getTempo()[i][j];
+            //debugChar += " "+ global.controllers.grille.getTempo()[i][j];
             global.controllers.grille.setRow(i, j, global.controllers.grille.getTempo()[i][j]);
             global.controllers.grille.setRowTempo(i, j, 0);
         }
 
-        console.log(debugChar);
+        //console.log(debugChar);
     }
 
     callback(global.controllers.grille.get());
