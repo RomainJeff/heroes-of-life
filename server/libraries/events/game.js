@@ -107,6 +107,7 @@ module.exports = {
                     // Suppression de l'adversaire
                     global.models.users.deletePlaying(adversary);
                     global.models.characters.delete(socket.id);
+                    global.controllers.game.stopGame();
                 }
             }
 
