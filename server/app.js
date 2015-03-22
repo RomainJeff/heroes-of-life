@@ -17,8 +17,8 @@ var gameControllerConstructor = require('./libraries/controllers/gameController.
 var grilleControllerConstructor = require('./libraries/controllers/grilleController.js')();
 
 global.controllers = {
-    game:   new gameControllerConstructor(),
-    grille: new grilleControllerConstructor()
+    grille: new grilleControllerConstructor(),
+    game:   new gameControllerConstructor()
 };
 
 

@@ -1,11 +1,14 @@
+var neightborControllerConstructor = require('./neighborController.js')();
+
+
 /**
  * Constructeur
  * @param grilleController grilleController
  *
  */
-var game = function (grilleController) {
-    this.grilleController = grilleController;
+var game = function () {
     this.playing = false;
+    this.interval = null;
 };
 
 
@@ -20,23 +23,44 @@ game.prototype.isPlaying = function () {
 
 
 /**
+ * Definie l'interval de jeu
+ * @param function callback
+ *
+ */
+game.prototype.startGame = function (callback) {
+    this.interval = setInterval(callback, 1500);
+    this.setPlaying(true);
+};
+
+
+/**
+ * Stop le jeu
+ *
+ */
+game.prototype.stopGame = function () {
+    clearInterval(this.interval);
+    this.setPlaying(false);
+};
+
+
+/**
  * Met a jour la grille
  * @param closure callback
  *
  */
 game.prototype.update = function (callback) {
     // On parcourt les lignes
-    for (line = 0; line < this.grilleController.getSize()[0]; line++) {
-        this.grilleController.setRowTempo(line, 0, 0);
+    for (line = 0; line < global.controllers.grille.getSize()[0]; line++) {
+        global.controllers.grille.setRowTempo(line, 0, 0);
 
         // On parcourt les colonnes
-        for (row = 0; row < this.grilleController.getSize()[1]; row++) {
-            this.grilleController.setRowTempo(line, row, this.hasToLive(line, row));
+        for (row = 0; row < global.controllers.grille.getSize()[1]; row++) {
+            this.hasToLive(line, row);
         }
     }
 
     // On met a jour la grille et on execute le callback
-    this.grilleController.moveGrille(callback);
+    this.moveGrille(callback);
 };
 
 
@@ -46,17 +70,24 @@ game.prototype.update = function (callback) {
  *
  */
 game.prototype.moveGrille = function (callback) {
+    console.log('');
+    
     // Mise a jour de la grille
-    for(var i = 0; i < this.grilleController.getSize()[0]; ++i)
+    for(var i = 0; i < global.controllers.grille.getSize()[0]; ++i)
     {
-        for(var j = 0; j < this.grilleController.getSize()[1]; ++j)
+        var debugChar = "";
+
+        for(var j = 0; j < global.controllers.grille.getSize()[1]; ++j)
         {
-            this.grilleController.setRow(i, j, this.grilleController.getTempo()[i][j]);
-            this.grilleController.setRowTempo(i, j, 0);
+            debugChar += " "+ global.controllers.grille.getTempo()[i][j];
+            global.controllers.grille.setRow(i, j, global.controllers.grille.getTempo()[i][j]);
+            global.controllers.grille.setRowTempo(i, j, 0);
         }
+
+        console.log(debugChar);
     }
 
-    callback(this.grilleController.get());
+    callback(global.controllers.grille.get());
 };
 
 
@@ -68,23 +99,23 @@ game.prototype.moveGrille = function (callback) {
  */
 game.prototype.hasToLive = function (line, row) {
     // On recupere le nombre de voisins
-    var neighbors = new neighborController(this.grilleController, line, row)
+    var neighbors = new neightborControllerConstructor(global.controllers.grille, line, row)
                     .getAlive();
 
     // Si cellule morte
-    if (this.grilleController.get()[line][row] == 0) {
+    if (global.controllers.grille.get()[line][row] == 0) {
         // Si 3 voisins = naissance
         if (neighbors == 3) {
-            this.grilleController.setRowTempo(line, row, 1);
+            global.controllers.grille.setRowTempo(line, row, 1);
         } else {
-            this.grilleController.setRowTempo(line, row, 0);
+            global.controllers.grille.setRowTempo(line, row, 0);
         }
     } else {
         // Si 2 ou 3 voisins = vivante
         if (neighbors == 2 || neighbors == 3) {
-            this.grilleController.setRowTempo(line, row, 1);
+            global.controllers.grille.setRowTempo(line, row, 1);
         } else {
-            this.grilleController.setRowTempo(line, row, 0);
+            global.controllers.grille.setRowTempo(line, row, 0);
         }
     }
 };

@@ -14,6 +14,8 @@ var grilleController = function() {
  *
  */
 grilleController.prototype.setRow = function (line, row, value) {
+    if (!this.grille[line]) this.grille[line] = [];
+
     this.grille[line][row] = value;
 };
 
@@ -26,6 +28,11 @@ grilleController.prototype.setRow = function (line, row, value) {
  *
  */
 grilleController.prototype.setRowTempo = function (line, row, value) {
+    if (!this.grilleTempo[line]) {
+        console.log('Definition ligne');
+        this.grilleTempo[line] = [];
+    }
+    
     this.grilleTempo[line][row] = value;
 };
 
@@ -98,7 +105,7 @@ grilleController.prototype.getSize = function () {
 grilleController.prototype.merge = function (grilles) {
     for (i = 0; i < grilles.length; i++) {
         var oldLine = 0;
-        
+
         // On parcour les lignes
         for (line = (i * (Math.ceil(15 / 2))); line < (Math.ceil(15 / (2 - i))); line++) {
             this.grille[line] = [];

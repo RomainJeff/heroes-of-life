@@ -41,9 +41,6 @@ module.exports = {
                 if (global.models.users.isReady(socket.id)) {
                     var adversary = global.models.users.getAdversary(socket.id);
 
-                    // On defini le jeu en tant que commence
-                    global.controllers.game.setPlaying(true);
-
                     global.models.sessions.get(adversary).emit('user:adversaryReady', {
                         infos: {
                             grille: global.controllers.grille.merge(global.controllers.grille.getNotMerged()),
@@ -65,6 +62,15 @@ module.exports = {
                             ]
                         }
                     });
+
+
+                    // On demarre le jeu
+                    global.controllers.game.startGame(function () {
+                        global.controllers.game.update(function (grille) {
+                            //console.log(grille);
+                        });
+                    });
+
                 } else {
                     socket.emit('user:canStart', {state: true, page: 'waiting'});
                 }
