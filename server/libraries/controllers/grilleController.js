@@ -28,11 +28,8 @@ grilleController.prototype.setRow = function (line, row, value) {
  *
  */
 grilleController.prototype.setRowTempo = function (line, row, value) {
-    if (!this.grilleTempo[line]) {
-        console.log('Definition ligne');
-        this.grilleTempo[line] = [];
-    }
-    
+    if (!this.grilleTempo[line]) this.grilleTempo[line] = [];
+
     this.grilleTempo[line][row] = value;
 };
 
