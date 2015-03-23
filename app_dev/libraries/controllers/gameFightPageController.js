@@ -144,9 +144,9 @@ gameFightPageController.eventGamePaused = function (pauses) {
 gameFightPageController.eventEnd = function (winner) {
     if (winner > -1) {
         var winnerName = gameFightPageController.grille.selectUser(gameFightPageController.users, winner).character;
-        alert(winnerName +" win the game !");
+        notificationController.display(winnerName +" win the game !", "Rejouer");
     } else {
-        alert('Egalite');
+        notificationController.display('Egalite', "Rejouer");
     }
 
     socketInterface.send('disconnect');
