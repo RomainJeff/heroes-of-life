@@ -2,7 +2,8 @@ var gameFightPageController = {
     grille: null,
     users: null,
     counter: 30,
-    counterInterval: null
+    counterInterval: null,
+    cells: 0
 };
 
 
@@ -26,6 +27,37 @@ gameFightPageController.setGrille = function (grille) {
 
 gameFightPageController.requestPause = function () {
     socketInterface.send('pause:request');
+};
+
+
+gameFightPageController.gridSelect = function () {
+    var isActive        = $(this).attr('data-active');
+    var lineCoord       = $(this).parent().attr('id').replace('line-', '');
+    var rowCoord        = $(this).attr('id').replace('row-', '');
+    var grille          = gameFightPageController.grille.get();
+    var userActive      = gameFightPageController.users[0].camps + 1;
+    var userCharacter   = gameFightPageController.users[0].character;
+
+    // Si la cellule est active et appartient a l'user
+    // alors il peut la supprimer
+    // Sinon Si la cellule est morte et dans les limite de la grille
+    // alors il peut la creer
+    if (isActive == "true" && grille[lineCoord][rowCoord] == userActive) {
+        $(this).attr('data-active', false);
+        $(this).attr('data-character', null);
+        gameFightPageController.cells++;
+        gameFightPageController.grille.setRow(lineCoord, rowCoord, 0);
+    } else if (
+        (gameFightPageController.cells > 0) &&
+        (grille[lineCoord][rowCoord] == 0) &&
+        (lineCoord > 0 && rowCoord > 0) &&
+        (lineCoord < (gameFightPageController.grille.taille[0] - 1) && rowCoord  < (gameFightPageController.grille.taille[1] - 1))
+    ) {
+        $(this).attr('data-active', true);
+        $(this).attr('data-character', userCharacter);
+        gameFightPageController.cells--;
+        gameFightPageController.grille.setRow(lineCoord, rowCoord, userActive);
+    }
 };
 
 
@@ -66,6 +98,10 @@ gameFightPageController.eventPauseResponse = function (response) {
     gameFightPageController.counter = 20;
     $('[data-user=0] + .power').hide();
     $('.counter[data-user=0]').addClass('active').children('span').html(gameFightPageController.counter);
+    $('.grille').removeClass('deactived');
+
+    // On ecoute les evenements de la grille
+    $('.grille .line .row').on('click', gameFightPageController.gridSelect);
 
     // Compteur
     gameFightPageController.counterInterval = setInterval(function () {
@@ -74,8 +110,10 @@ gameFightPageController.eventPauseResponse = function (response) {
         if (gameFightPageController.counter == 0) {
             $('.counter[data-user=0]').removeClass('active');
             $('[data-user=0] + .power').show();
+            $('.grille').addClass('deactived');
+            $('.grille .line .row').unbind('click');
 
-            socketInterface.send('pause:validate', []);
+            socketInterface.send('pause:validate', gameFightPageController.grille.get());
             clearInterval(gameFightPageController.counterInterval);
         }
 

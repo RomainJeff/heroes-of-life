@@ -40,6 +40,8 @@ pauseEvent.request = function (socket) {
 pauseEvent.validate = function (socket, grille) {
     var adversary = global.models.users.getAdversary(socket.id);
 
+    global.controllers.grille.grille = grille;
+
     // On redemarre le jeu
     global.controllers.game.startGame(function () {
         global.events.user.gameInterval(adversary, socket);

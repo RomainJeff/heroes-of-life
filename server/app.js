@@ -67,8 +67,8 @@ io.on('connection', function (socket) {
     });
 
     // Quand un joueur valide pause
-    socket.on('pause:validate', function () {
-        global.events.pause.validate(socket);
+    socket.on('pause:validate', function (grille) {
+        global.events.pause.validate(socket, grille);
     });
 
 

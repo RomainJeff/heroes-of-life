@@ -1041,13 +1041,16 @@ body {
         left: calc(50% - 300px);
         position: absolute;
 
-        .line .row:hover {
-            background: default;
+        &.deactived {
+            .line .row:hover {
+                background: default;
+            }
+
+            .line .row[data-active="false"]:hover {
+                background: transparent;
+            }
         }
 
-        .line .row[data-active="false"]:hover {
-            background: transparent;
-        }
     }
 
     .grille .line .row:nth-child(15),
@@ -1093,7 +1096,6 @@ body {
 
 .counter[data-user="0"] {
     position: absolute;
-    top: 250px;
     left: 55px;
     right: 0;
     font-family: Raleway;
@@ -1101,6 +1103,14 @@ body {
     font-size: 13px;
     text-align:center;
     display: none;
+}
+
+.right .counter[data-user="0"] {
+    bottom: 250px;
+}
+
+.left .counter[data-user="0"] {
+    top: 250px;
 }
 
 .counter[data-user="0"] span {
