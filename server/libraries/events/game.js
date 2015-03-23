@@ -64,21 +64,23 @@ module.exports = {
                     });
 
 
-                    // On demarre le jeu
-                    global.controllers.game.startGame(function () {
-                        global.controllers.game.update(function (grille) {
-                            socket.emit('game:refresh', grille);
-                            global.models.sessions.get(adversary).emit('game:refresh', grille);
+                    // On demarre le jeu si il est pas deja demarre
+                    if (!global.controllers.game.isPlaying()) {
+                        global.controllers.game.startGame(function () {
+                            global.controllers.game.update(function (grille) {
+                                // Verifie si le jeu est fini
+                                global.controllers.game.isEnded(grille, function (winner) {
+                                    socket.emit('game:end', winner);
+                                    global.models.sessions.get(adversary).emit('game:end', winner);
 
-                            // Verifie si le jeu est fini
-                            global.controllers.game.isEnded(grille, function (winner) {
-                                socket.emit('game:end', winner);
-                                global.models.sessions.get(adversary).emit('game:end', winner);
-
-                                global.controllers.game.stopGame();
+                                    global.controllers.game.stopGame();
+                                });
+                                
+                                socket.emit('game:refresh', grille);
+                                global.models.sessions.get(adversary).emit('game:refresh', grille);
                             });
                         });
-                    });
+                    }
 
                 } else {
                     socket.emit('user:canStart', {state: true, page: 'waiting'});
@@ -114,7 +116,7 @@ module.exports = {
                     global.models.sessions.get(adversary).emit('user:logout');
                     // Suppression de l'adversaire
                     global.models.users.deletePlaying(adversary);
-                    global.models.characters.delete(socket.id);
+                    global.models.characters.delete(adversary);
                     global.controllers.game.stopGame();
                 }
             }

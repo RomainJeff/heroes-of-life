@@ -1,6 +1,4 @@
 var neightborControllerConstructor = require('./neighborController.js')();
-var schemaController = require('./schemaController.js')();
-
 
 /**
  * Constructeur
@@ -10,6 +8,7 @@ var schemaController = require('./schemaController.js')();
 var game = function () {
     this.playing = false;
     this.interval = null;
+    this.turn = 0;
 };
 
 
@@ -41,6 +40,7 @@ game.prototype.startGame = function (callback) {
 game.prototype.stopGame = function () {
     clearInterval(this.interval);
     this.setPlaying(false);
+    this.turns = 0;
 };
 
 
@@ -130,10 +130,14 @@ game.prototype.hasToLive = function (line, row) {
  *
  */
 game.prototype.isEnded = function (grille, callback) {
-    if (schemaController.hasSchema(grille)) {
-        var cellsPlayerOne = global.controllers.grille.cellsPlayer(0);
-        var cellsPlayerTwo = global.controllers.grille.cellsPlayer(1);
-
+    var cellsPlayerOne = global.controllers.grille.cellsPlayer(0);
+    var cellsPlayerTwo = global.controllers.grille.cellsPlayer(1);
+    
+    if (cellsPlayerOne <= 0) {
+        callback(1); // Player 2 gagne
+    } else if (cellsPlayerTwo <= 0) {
+        callback(0); // Player 1 gagne
+    } else if (this.turns >= 100) {
         // On verifie qui a le plus de cellule
         if (cellsPlayerOne > cellsPlayerTwo) {
             callback(0); // Player 1 gagne
@@ -142,10 +146,6 @@ game.prototype.isEnded = function (grille, callback) {
         } else {
             callback(-1); // Egalite
         }
-    } else if (cellsPlayerOne <= 0) {
-        callback(1); // Player 2 gagne
-    } else if (cellsPlayerTwo <= 0) {
-        callback(0); // Player 1 gagne
     }
 };
 

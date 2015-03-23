@@ -132,6 +132,7 @@ grilleController.prototype.merge = function (grilles) {
 /**
  * Retourne le nombre de cellule vivantes de la grille
  * @return int
+ *
  */
 grilleController.prototype.countCells = function (grille, callback) {
     var cellsNumber = 0;

@@ -39,6 +39,14 @@ gameFightPageController.eventRefresh = function (grille) {
 
 
 gameFightPageController.eventEnd = function (winner) {
-    alert(winner +" win the game !");
+    if (winner > -1) {
+        var winnerName = gameFightPageController.grille.selectUser(this.users, winner).character;
+        alert(winnerName +" win the game !");
+    } else {
+        alert('Egalite');
+    }
+
     socketInterface.send('disconnect');
+    indexController.reset();
+    pageController.display('home');
 };
