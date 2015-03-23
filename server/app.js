@@ -24,7 +24,10 @@ global.controllers = {
 
 /** Events **/
 global.events = {
-    game: require('./libraries/events/game.js')
+    user: require('./libraries/events/user.js'),
+    global: require('./libraries/events/global.js'),
+    pause: require('./libraries/events/pause.js'),
+    character: require('./libraries/events/character.js')
 };
 
 
@@ -42,31 +45,36 @@ io.on('connection', function (socket) {
     // Quand le client nous demande de jouer
     // en ligne
     socket.on('user:request', function() {
-        global.events.game.playOnline(socket);
+        global.events.user.request(socket);
     });
 
 
     // Quand l'utilisateur choisis son personnage
     socket.on('character:choose', function (character) {
-        global.events.game.selectChar(socket, character);
+        global.events.character.select(socket, character);
     });
 
 
     // Quand un joueur envoie sa grille
     socket.on('user:ready', function (grille) {
-        global.events.game.ready(socket, grille);
+        global.events.user.ready(socket, grille);
     });
 
 
     // Quand un joueur mets pause
-    socket.on('game:pause', function () {
-        global.events.game.pause(socket);
+    socket.on('pause:request', function () {
+        global.events.pause.request(socket);
+    });
+
+    // Quand un joueur valide pause
+    socket.on('pause:validate', function () {
+        global.events.pause.validate(socket);
     });
 
 
     // Quand le client se deconnecte
     socket.on('disconnect', function () {
-        global.events.game.logOut(socket);
+        global.events.global.logOut(socket);
     });
 
 });
