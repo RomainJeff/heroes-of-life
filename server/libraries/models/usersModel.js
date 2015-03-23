@@ -1,4 +1,4 @@
-module.exports = function () {
+    module.exports = function () {
 
     /**
      * Constructeur
@@ -200,6 +200,37 @@ module.exports = function () {
             camps: this.users[id].index
         };
     };
+
+
+    /**
+     * Retourne si l'utilisateur peut faire une pause
+     * @param string id
+     *
+     */
+    userModel.prototype.canPause = function (id) {
+        return (this.users[id].pauses > 0) ? true : false;
+    };
+
+
+    /**
+     * Recupere le nombre de pauses
+     * @param string id
+     *
+     */
+    userModel.prototype.getPauses = function (id) {
+        return this.users[id].pauses;
+    };
+
+
+    /**
+     * Decremente le nombre de pauses
+     * @param string id
+     */
+     userModel.prototype.deletePause = function (id) {
+         this.users[id].pauses -= 1;
+
+         return this.users[id].pauses;
+     };
 
 
     // On exporte la classe

@@ -45,6 +45,19 @@ game.prototype.stopGame = function () {
 
 
 /**
+ * Pause le jeu
+ * @param function callback
+ *
+ */
+game.prototype.pauseGame = function (callback) {
+    clearInterval(this.interval);
+
+    callback();
+};
+
+
+
+/**
  * Met a jour la grille
  * @param closure callback
  *
@@ -132,7 +145,7 @@ game.prototype.hasToLive = function (line, row) {
 game.prototype.isEnded = function (grille, callback) {
     var cellsPlayerOne = global.controllers.grille.cellsPlayer(0);
     var cellsPlayerTwo = global.controllers.grille.cellsPlayer(1);
-    
+
     if (cellsPlayerOne <= 0) {
         callback(1); // Player 2 gagne
     } else if (cellsPlayerTwo <= 0) {

@@ -2,9 +2,9 @@ var indexController = {};
 
 
 indexController.home = function () {
-    $('#start-experience').on('click', this.startExperience);
+    $('#start-experience').on('click', indexController.startExperience);
 
-    fullScreenController.listen(this.listenFullscreenChanges);
+    fullScreenController.listen(indexController.listenFullscreenChanges);
 };
 
 

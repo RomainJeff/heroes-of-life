@@ -1073,3 +1073,41 @@ body {
 .container.fight .left {
     left: -60px;
 }
+
+
+/** COUNTER FIGHT **/
+.counter[data-user="1"] {
+    position: fixed;
+    z-index: 20;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    text-align: center;
+    box-sizing: border-box;
+    padding-top: calc(50vh - 50px);
+    font-size: 100px;
+    font-family: "Raleway";
+    left: 0; right: 0;
+    top: 0; bottom: 0;
+    display: none;
+}
+
+.counter[data-user="0"] {
+    position: absolute;
+    top: 250px;
+    left: 55px;
+    right: 0;
+    font-family: Raleway;
+    color: white;
+    font-size: 13px;
+    text-align:center;
+    display: none;
+}
+
+.counter[data-user="0"] span {
+    font-size: 20px;
+    display: block;
+}
+
+.counter.active {
+    display: block;
+}

@@ -69,18 +69,7 @@ userEvent.ready = function (socket, grille) {
                 // On demarre le jeu si il est pas deja demarre
                 if (!global.controllers.game.isPlaying()) {
                     global.controllers.game.startGame(function () {
-                        global.controllers.game.update(function (grille) {
-                            // Verifie si le jeu est fini
-                            global.controllers.game.isEnded(grille, function (winner) {
-                                socket.emit('game:end', winner);
-                                global.models.sessions.get(adversary).emit('game:end', winner);
-
-                                global.controllers.game.stopGame();
-                            });
-
-                            socket.emit('game:refresh', grille);
-                            global.models.sessions.get(adversary).emit('game:refresh', grille);
-                        });
+                        global.events.user.gameInterval(adversary, socket);
                     });
                 }
 
@@ -88,6 +77,29 @@ userEvent.ready = function (socket, grille) {
                 socket.emit('user:canStart', {state: true, page: 'waiting'});
             }
         }
+    });
+};
+
+
+/**
+ * L'execution du jeu
+ * @param string adversary
+ * @param string socket
+ *
+ */
+userEvent.gameInterval = function (adversary, socket) {
+    global.controllers.game.update(function (grille) {
+
+        // Verifie si le jeu est fini
+        global.controllers.game.isEnded(grille, function (winner) {
+            socket.emit('game:end', winner);
+            global.models.sessions.get(adversary).emit('game:end', winner);
+
+            global.controllers.game.stopGame();
+        });
+
+        socket.emit('game:refresh', grille);
+        global.models.sessions.get(adversary).emit('game:refresh', grille);
     });
 };
 

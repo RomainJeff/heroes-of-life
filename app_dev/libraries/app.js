@@ -9,7 +9,9 @@ socketInterface.listen({
     'user:canStart':        gameCellsPageController.eventCanStart,
     'user:adversaryReady':  gameWaitingPageController.eventAdversaryReady,
     'game:refresh':         gameFightPageController.eventRefresh,
-    'game:end':             gameFightPageController.eventEnd
+    'game:end':             gameFightPageController.eventEnd,
+    'game:paused':          gameFightPageController.eventGamePaused,
+    'pause:response':       gameFightPageController.eventPauseResponse
 });
 
 
