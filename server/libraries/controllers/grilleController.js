@@ -153,12 +153,14 @@ grilleController.prototype.countCells = function (grille, callback) {
  * @return int
  *
  */
-grilleController.prototype.cellsPlayer = function (player) {
+grilleController.prototype.cellsPlayer = function (player, grille) {
     var count = 0;
 
-    for (line in this.grille) {
-        for (row in this.grille[line]) {
-            if (this.grille[line][row] == (player + 1)) count++;
+    if (!grille) var grille = this.grille;
+
+    for (line in grille) {
+        for (row in grille[line]) {
+            if (grille[line][row] == (player + 1)) count++;
         }
     }
 

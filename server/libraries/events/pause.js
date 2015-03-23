@@ -39,8 +39,14 @@ pauseEvent.request = function (socket) {
  */
 pauseEvent.validate = function (socket, grille) {
     var adversary = global.models.users.getAdversary(socket.id);
+    var indexPlayer = global.models.users.getPlaying(socket.id).index;
+    var countCellsActual = global.controllers.grille.cellsPlayer(indexPlayer);
+    var countCellsNew = global.controllers.grille.cellsPlayer(indexPlayer, grille);
 
-    global.controllers.grille.grille = grille;
+    // Si aucune cellule n'est en trop alors on valide la grille
+    if (countCellsActual >= countCellsNew) {
+        global.controllers.grille.grille = grille;
+    }
 
     // On redemarre le jeu
     global.controllers.game.startGame(function () {
