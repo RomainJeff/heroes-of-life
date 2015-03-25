@@ -1121,3 +1121,161 @@ body {
 .counter.active {
     display: block;
 }
+
+
+/** TUTO **/
+.tutorial-overlay {
+    position: fixed;
+    background: rgba(0, 0, 0, 1);
+    left: 0; right: 0;
+    top: 0; bottom: 0;
+    width: 100%;
+    height: 100vh;
+    transition-duration: 200ms;
+    opacity: 0;
+    z-index: -1;
+
+    &.active {
+        z-index: 9;
+        opacity: 1;
+    }
+}
+
+
+.tutorial-content {
+    position: absolute;
+    width: 500px;
+    left: calc(50% - 250px);
+    top: calc(50vh - 200px);
+    border-radius: 5px;
+    height: 400px;
+    transition-duration: 200ms;
+    opacity: 0;
+    z-index: -1;
+    transform: scale(0);
+
+    &.active {
+        transform: scale(1);
+        opacity: 1;
+        z-index: 10;
+    }
+}
+
+.arrow {
+    position: absolute;
+    color: rgba(255, 255, 255, 0.7);
+    background: transparent;
+    border: none;
+    font-size: 40px;
+    font-family: "Raleway";
+    top: calc(200px - 50px);
+    transition-duration: 200ms;
+    cursor: pointer;
+    opacity: 0;
+    outline: none;
+}
+
+.arrow:hover {
+    color: #fff;
+}
+
+.arrow.active {
+    opacity: 1;
+}
+
+.arrow-left {
+    left: -100px;
+}
+
+.arrow-right {
+    right: -100px;
+}
+
+
+[id=slides] {
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    position: relative;
+}
+
+
+.slide {
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: absolute;
+    transition-duration: 200ms;
+}
+
+.slide.left {
+    transform: translateX(-100%);
+}
+
+.slide.right {
+    transform: translateX(100%);
+}
+
+.slide.active,
+.slide.left.active,
+.slide.right.active {
+    transform: translateX(0);
+}
+
+.slide h3 {
+    font-size: 30px;
+    font-weight: 100;
+    margin-bottom: 20px;
+    font-family: "Raleway";
+    text-align: left;
+    color: #fff;
+}
+
+.slide p {
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 15px;
+    font-family: "Raleway";
+}
+
+.tutorial-close {
+    margin-top: 15px;
+    text-align: center;
+    width: 100%;
+    display: block;
+    text-decoration: underline;
+    cursor: pointer;
+    background: transparent;
+    padding: 0;
+    box-sizing: border-box;
+    color: #fff;
+    border: none;
+    font-family: "Raleway";
+    outline: none;
+    font-size: 13px;
+}
+
+.tutorial-start {
+    margin-top: 80px;
+    text-align: center;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    cursor: pointer;
+    background: transparent;
+    padding: 10px;
+    box-sizing: border-box;
+    color: #fff;
+    text-transform: uppercase;
+    border: solid 1px #fff;
+    font-family: "Raleway";
+    font-weight: 100;
+    outline: none;
+    font-size: 15px;
+    transition-duration: 200ms;
+}
+
+.tutorial-start:hover {
+    background: #fff;
+    color: #000;
+}
