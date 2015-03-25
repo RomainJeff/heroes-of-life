@@ -1206,6 +1206,7 @@ body {
     width: 100%;
     position: absolute;
     transition-duration: 200ms;
+    opacity: 0;
 }
 
 .slide.left {
@@ -1220,6 +1221,7 @@ body {
 .slide.left.active,
 .slide.right.active {
     transform: translateX(0);
+    opacity: 1;
 }
 
 .slide h3 {
