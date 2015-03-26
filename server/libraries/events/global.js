@@ -40,6 +40,13 @@ globalEvent.logOut =  function (socket) {
                 global.models.users.deletePlaying(adversary);
                 global.models.characters.delete(adversary);
                 global.controllers.game.stopGame();
+
+                // On previent les spectateurs
+                global.models.sessions.getSpectators(function (spectators) {
+                    for (spectator in spectators) {
+                        global.models.sessions.get(spectator).emit('game:end', 'nobody');
+                    }
+                });
             }
         }
 
