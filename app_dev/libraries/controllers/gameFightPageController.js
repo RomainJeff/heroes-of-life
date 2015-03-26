@@ -183,9 +183,9 @@ gameFightPageController.eventSpectatorGamePaused = function (users) {
 gameFightPageController.eventSpectatorEnd = function (winner) {
     if (winner > -1) {
         var winnerName = gameFightPageController.grille.selectUser(gameFightPageController.users, winner).character;
-        notificationController.display(winnerName +" win the game !", "Rejouer");
+        notificationController.display(winnerName +" win the game !", "Fermer");
     } else {
-        notificationController.display('Egalite', "Rejouer");
+        notificationController.display('Egalite', "Fermer");
     }
 
     socketInterface.send('disconnect');
