@@ -27,7 +27,8 @@ global.events = {
     user: require('./libraries/events/user.js'),
     global: require('./libraries/events/global.js'),
     pause: require('./libraries/events/pause.js'),
-    character: require('./libraries/events/character.js')
+    character: require('./libraries/events/character.js'),
+    spectator: require('./libraries/events/spectator.js')
 };
 
 
@@ -42,11 +43,11 @@ io.on('connection', function (socket) {
      * EVENTS LISTENERS
      ********************/
 
-    // Quand le client nous demande de jouer
-    // en ligne
-    socket.on('user:request', function() {
-        global.events.user.request(socket);
-    });
+     // Quand le client nous demande de jouer
+     // en ligne
+     socket.on('user:request', function() {
+         global.events.user.request(socket);
+     });
 
 
     // Quand l'utilisateur choisis son personnage
@@ -69,6 +70,12 @@ io.on('connection', function (socket) {
     // Quand un joueur valide pause
     socket.on('pause:validate', function (grille) {
         global.events.pause.validate(socket, grille);
+    });
+
+
+    // Quand un spectateur arrive
+    socket.on('spectator:login', function() {
+        global.events.spectator.login(socket);
     });
 
 

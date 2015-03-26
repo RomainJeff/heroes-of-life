@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Heroes of life - Spectator</title>
+
+    <link rel="stylesheet" href="styles/app.css">
+</head>
+<body>
+    <!-- HOMEPAGE -->
+    <section id="homepage">
+        <div class="smoke"></div>
+        <div id="logo"></div>
+        <button id="start-experience">watch the match</button>
+    </section>
+    <!-- END HOMEPAGE -->
+
+
+    <!-- GAME -->
+    <section id="game-interface">
+        <section id="loading-content"></section>
+        <section id="notification-content"></section>
+        <section id="game-content" class="pane" data-active="true"></section>
+    </section>
+    <!-- END GAME -->
+
+
+    <script type="text/javascript" src="http://localhost:8080/socket.io/socket.io.js"></script>
+
+    <!-- build:js scripts/vendors.js -->
+    <script type="text/javascript" src="libraries/vendors/jquery.js"></script>
+    <script type="text/javascript" src="libraries/vendors/handlebars.js"></script>
+    <!-- endbuild -->
+
+    <!-- build:js scripts/spectator.js -->
+    <script type="text/javascript" src="libraries/head_app.js"></script>
+
+    <script type="text/javascript" src="libraries/controllers/_routingController.js"></script>
+    <script type="text/javascript" src="libraries/controllers/_pageController.js"></script>
+    <script type="text/javascript" src="libraries/controllers/_fullScreenController.js"></script>
+    <script type="text/javascript" src="libraries/controllers/_loadingController.js"></script>
+    <script type="text/javascript" src="libraries/controllers/_notificationController.js"></script>
+    <script type="text/javascript" src="libraries/controllers/_socketController.js"></script>
+    <script type="text/javascript" src="libraries/controllers/_consoleController.js"></script>
+
+    <script type="text/javascript" src="libraries/models/heroesModel.js"></script>
+
+    <script type="text/javascript" src="libraries/controllers/grilleController.js"></script>
+    <script type="text/javascript" src="libraries/controllers/indexController.js"></script>
+    <script type="text/javascript" src="libraries/controllers/spectatorController.js"></script>
+    <script type="text/javascript" src="libraries/controllers/gameHomePageController.js"></script>
+    <script type="text/javascript" src="libraries/controllers/gameCharactersPageController.js"></script>
+    <script type="text/javascript" src="libraries/controllers/gameCellsPageController.js"></script>
+    <script type="text/javascript" src="libraries/controllers/gameWaitingPageController.js"></script>
+    <script type="text/javascript" src="libraries/controllers/gameFightPageController.js"></script>
+    <script type="text/javascript" src="libraries/spectator.js"></script>
+
+    <script type="text/javascript" src="libraries/foot_app.js"></script>
+    <!-- endbuild -->
+</body>
+</html>
