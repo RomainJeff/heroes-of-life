@@ -4,8 +4,8 @@ var socketInterface = new socketController('localhost:8080');
 socketInterface.listen({
     'game:start':           gameWaitingPageController.eventSpectatorStart,
     'game:refresh':         gameFightPageController.eventRefresh,
-    'game:paused':          gameFightPageController.eventGamePaused,
-    'game:end':             gameFightPageController.eventEnd
+    'game:paused':          gameFightPageController.eventSpectatorGamePaused,
+    'game:end':             gameFightPageController.eventSpectatorEnd
 });
 
 

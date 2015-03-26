@@ -153,3 +153,46 @@ gameFightPageController.eventEnd = function (winner) {
     indexController.reset();
     pageController.display('home');
 };
+
+
+gameFightPageController.eventSpectatorGamePaused = function (users) {
+    gameFightPageController.counter = 20;
+
+    // On met a jour les powers
+    for (user in users) {
+        var camps = (users[user].camps) ? 0 : 1;
+        $('[data-user="'+ camps +'"] .pauses').html(users[user].pauses);
+    }
+
+    $('.counter[data-user=1]').addClass('active').html(gameFightPageController.counter);
+
+    // Compteur
+    gameFightPageController.counterInterval = setInterval(function () {
+        $('.counter[data-user=1]').html(gameFightPageController.counter);
+
+        if (gameFightPageController.counter == 0) {
+            $('.counter[data-user=1]').removeClass('active');
+            clearInterval(gameFightPageController.counterInterval);
+        }
+
+        gameFightPageController.counter--;
+    }, 1000);
+};
+
+
+gameFightPageController.eventSpectatorEnd = function (winner) {
+    if (winner > -1) {
+        var winnerName = gameFightPageController.grille.selectUser(gameFightPageController.users, winner).character;
+        notificationController.display(winnerName +" win the game !", "Rejouer");
+    } else {
+        notificationController.display('Egalite', "Rejouer");
+    }
+
+    socketInterface.send('disconnect');
+    indexController.reset();
+
+
+    pageController
+        .setParams({message: "Waiting for the match to begin"})
+        .display('waiting');
+};

@@ -194,11 +194,27 @@
      * @return object
      */
     userModel.prototype.export = function (id) {
-        return {
-            pauses: this.users[id].pauses,
-            character: global.models.characters.get()[id],
-            camps: this.users[id].index
-        };
+        var users = [];
+
+        // Si on veut recuperer tous les utilisateurs
+        // Sinon on retourne celui demande
+        if (!id) {
+            for (user in this.users) {
+                users[users.length] = {
+                    pauses: this.users[user].pauses,
+                    character: global.models.characters.get()[user],
+                    camps: this.users[user].index
+                };
+            };
+        } else {
+            users = {
+                pauses: this.users[id].pauses,
+                character: global.models.characters.get()[id],
+                camps: this.users[id].index
+            };
+        }
+
+        return users;
     };
 
 

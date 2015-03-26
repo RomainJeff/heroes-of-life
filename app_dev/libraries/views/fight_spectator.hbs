@@ -1,0 +1,49 @@
+<section id="fight" class="pane" data-active="true">
+
+    <!-- Compteur adversaire -->
+    <div class="counter" data-user="1"></div>
+
+    <div class="container fight">
+
+        <!-- Personnage du joueur courant -->
+        <aside class="left">
+            {{#if infos.users.0.camps}}
+                <div data-user="1" class="fight-character-container">
+                    <div class="fight-character">
+                        <div class="char {{ infos.users.1.character }}"></div>
+                    </div>
+                    <div class="pauses">{{ infos.users.1.pauses }}</div>
+                </div>
+            {{else}}
+                <div data-user="0" class="fight-character-container">
+                    <div class="fight-character">
+                        <div class="char {{ infos.users.0.character }}"></div>
+                    </div>
+                    <div class="pauses">{{ infos.users.0.pauses }}</div>
+                </div>
+            {{/if}}
+        </aside>
+
+        <!-- Personnage de l'adversaire -->
+        <aside class="right">
+            {{#if infos.users.0.camps}}
+                <div data-user="0" class="fight-character-container" style="bottom: 80px">
+                    <div class="fight-character">
+                        <div class="char {{ infos.users.0.character }}"></div>
+                    </div>
+                    <div class="pauses">{{ infos.users.0.pauses }}</div>
+                </div>
+            {{else}}
+                <div data-user="1" class="fight-character-container">
+                    <div class="fight-character">
+                        <div class="char {{ infos.users.1.character }}"></div>
+                    </div>
+                    <div class="pauses">{{ infos.users.1.pauses }}</div>
+                </div>
+            {{/if}}
+        </aside>
+
+        <!-- Grille -->
+        <div id="grille" class="grille deactived"></div>
+    </div>
+</section>

@@ -49,3 +49,13 @@ gameWaitingPageController.eventAdversaryReady = function (response) {
     pageController.setParams(response);
     pageController.display('fight');
 };
+
+
+gameWaitingPageController.eventSpectatorStart = function (response) {    
+    gameWaitingPageController.reset();
+    gameFightPageController.setGrille(response.infos.grille);
+    gameFightPageController.setUsers(response.infos.users);
+
+    pageController.setParams(response);
+    pageController.display('fight_spectator');
+};

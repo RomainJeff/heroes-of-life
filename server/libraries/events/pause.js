@@ -20,6 +20,13 @@ pauseEvent.request = function (socket) {
             });
 
             global.models.sessions.get(adversary).emit('game:paused', pausesLeft);
+
+            // On previent les spectateurs
+            global.models.sessions.getSpectators(function (spectators) {
+                for (spectator in spectators) {
+                    global.models.sessions.get(spectator).emit('game:paused', global.models.users.export());
+                }
+            });
         });
     } else {
         // On refuse la pause
