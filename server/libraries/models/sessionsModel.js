@@ -1,6 +1,6 @@
 module.exports = {
     sessions: {},
-    spectator: null,
+    spectator: {},
 
     add: function (id, socket) {
         this.sessions[id] = socket;
@@ -11,15 +11,15 @@ module.exports = {
     },
 
     hasSpectator: function () {
-        return (this.spectator != null) ? true : false;
+        return (this.spectator.length > 0) ? true : false;
     },
 
     isSpectator: function (id) {
-        return (this.spectator === id) ? true : false;
+        return (this.spectator.indexOf(id) > -1) ? true : false;
     },
 
-    deleteSpectator: function () {
-        this.spectator = null;
+    deleteSpectator: function (id) {
+        this.spectator.slice[id];
     },
 
     delete: function (id) {

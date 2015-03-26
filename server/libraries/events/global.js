@@ -7,8 +7,17 @@ var globalEvent = {};
  *
  */
 globalEvent.logOut =  function (socket) {
+
+    // Si le client etait un spectateur
+    if (global.models.sessions.isSpectator(socket.id)) {
+        console.log('Deconnexion spectateur: '+ socket.id);
+        global.models.sessions.deleteSpectator(socket.id);
+    }
+
     // Si le client etait en jeu
     if (global.models.users.exists(socket.id, true)) {
+        console.log('Deconnexion joueur: '+ socket.id);
+
         // Suppression du joueur courant
         global.models.users.deletePlaying(socket.id);
         global.models.characters.delete(socket.id);
@@ -46,6 +55,7 @@ globalEvent.logOut =  function (socket) {
         }
 
     } else if (global.models.users.exists(socket.id, false)) {
+        console.log('Deconnexion joueur en attente: '+ socket.id);
         global.models.users.deleteWaiting(socket.id);
     }
 

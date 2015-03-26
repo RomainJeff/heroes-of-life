@@ -8,10 +8,8 @@ var spectatorEvent = {};
  *
  */
 spectatorEvent.login =  function (socket) {
-    if (!global.models.sessions.hasSpectator()) {
-        console.log('Nouveau spectateur: '+ socket.id);
-        global.models.sessions.addSpectator(socket.id);
-    }
+    console.log('Nouveau spectateur: '+ socket.id);
+    global.models.sessions.addSpectator(socket.id);
 };
 
 
